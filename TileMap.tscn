@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Art/GroundGrass.png" type="Texture" id=1]
+[ext_resource path="res://Art/Ground.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GroundGrass" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0.56694, 0.916992 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 0.0330048, -27.6634 )
+
+[node name="Ground" type="Sprite" parent="."]
+
+transform/pos = Vector2( 189.705, 0 )
+texture = ExtResource( 2 )
+centered = false
+
+
