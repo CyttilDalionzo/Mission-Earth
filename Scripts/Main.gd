@@ -1,7 +1,6 @@
 
 extends Node2D
 
-var test_sprite = null
 var main_camera = null
 
 var screen_width = 0
@@ -16,6 +15,8 @@ var level_height = 15
 
 var level_grid = []
 var tile_map = null
+var preview_tile_map = null
+var old_preview = [0,0]
 
 # main_camera.set_zoom(Vector2(2,2))
 
@@ -23,9 +24,9 @@ func _ready():
 	set_process_input(true)
 	set_process(true)
 	
-	test_sprite = get_node("Sprite")
 	main_camera = get_node("MainCamera")
 	tile_map = get_node("TileMap")
+	preview_tile_map = get_node("PreviewTileMap")
 	
 	screen_width = get_viewport_rect().size.width
 	screen_height = get_viewport_rect().size.height
@@ -53,7 +54,6 @@ func initialize_tiles():
 
 # GRID
 func _draw():
-	
 	var cur_width = 0
 	var cur_height = 0
 	
@@ -66,18 +66,21 @@ func _draw():
 		cur_height += cell_size
 
 func _input(ev):
-	# check if mouse button clicked
+	# check if mouse button clicked      (or use ev.pos)
 	var mouse_pos = get_global_mouse_pos()
-	var grid_pos_x = round(mouse_pos.x/cell_size)
-	var grid_pos_y = round(mouse_pos.y/cell_size)
+	var grid_pos_x = floor(mouse_pos.x/cell_size)
+	var grid_pos_y = floor(mouse_pos.y/cell_size)
 	
 	if (ev.type == InputEvent.MOUSE_BUTTON):
 		if(ev.pressed):
-			print("Mouse Click/Unclick at: ", ev.pos)
 			tile_map.set_cell(grid_pos_x,grid_pos_y,0)
 		# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
-		test_sprite.set_pos(Vector2(grid_pos_x*cell_size, grid_pos_y*cell_size))
+		if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
+			preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
+			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, 0)
+			old_preview = [grid_pos_x, grid_pos_y]
+		# test_sprite.set_pos(Vector2(grid_pos_x*cell_size, grid_pos_y*cell_size))
 
 func _process(delta):
 	move_camera()
