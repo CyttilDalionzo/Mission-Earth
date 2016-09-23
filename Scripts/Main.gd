@@ -12,9 +12,13 @@ var cell_size = 150
 
 var level_width = 15
 var level_height = 15
+var current_tile = 0
+var current_tile_map = 0
+var current_flip_x = 0
+var current_flip_y = 0
 
 var level_grid = []
-var tile_map = null
+var tile_map = [null, null, null]
 var preview_tile_map = null
 var old_preview = [0,0]
 
@@ -25,7 +29,9 @@ func _ready():
 	set_process(true)
 	
 	main_camera = get_node("MainCamera")
-	tile_map = get_node("TileMap")
+	tile_map[0] = get_node("TileMapFront")
+	tile_map[1] = get_node("TileMapMiddle")
+	tile_map[2] = get_node("TileMapBack")
 	preview_tile_map = get_node("PreviewTileMap")
 	
 	screen_width = get_viewport_rect().size.width
@@ -45,10 +51,10 @@ func initialize_tiles():
 		for j in range(0, level_width):
 			if(i == floor(level_height*0.5)):
 				level_grid[i][j] = 1
-				tile_map.set_cell(j,i,0)
+				tile_map[0].set_cell(j,i,0)
 			elif(i > level_height*0.5):
 				level_grid[i][j] = 2
-				tile_map.set_cell(j,i,1)
+				tile_map[0].set_cell(j,i,1)
 			else:
 				level_grid[i][j] = 0
 
@@ -71,14 +77,26 @@ func _input(ev):
 	var grid_pos_x = floor(mouse_pos.x/cell_size)
 	var grid_pos_y = floor(mouse_pos.y/cell_size)
 	
+	# arbitrary check to make sure we can't place things underneath GUI  (NEEDS TO BE IMPROVED)
+	if(ev.pos.y > get_node("CanvasLayer/Control/TabContainer").get_pos().y):
+		return
+	
 	if (ev.type == InputEvent.MOUSE_BUTTON):
 		if(ev.pressed):
-			tile_map.set_cell(grid_pos_x,grid_pos_y,0)
+			if(ev.button_index == BUTTON_LEFT):
+				tile_map[current_tile_map].set_cell(grid_pos_x,grid_pos_y, current_tile, current_flip_x)
+			elif(ev.button_index == BUTTON_RIGHT):
+				current_flip_x = (current_flip_x+1)%2
+			elif(ev.button_index == BUTTON_WHEEL_UP):
+				main_camera.set_zoom(Vector2(2,2))
+			elif(ev.button_index == BUTTON_WHEEL_DOWN):
+				main_camera.set_zoom(Vector2(1,1))
 		# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
+		# get_node("Light2D").set_pos(Vector2(mouse_pos.x, mouse_pos.y))
 		if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
 			preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
-			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, 0)
+			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x)
 			old_preview = [grid_pos_x, grid_pos_y]
 		# test_sprite.set_pos(Vector2(grid_pos_x*cell_size, grid_pos_y*cell_size))
 

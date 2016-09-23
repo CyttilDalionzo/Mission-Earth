@@ -1,15 +1,20 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://Art/GroundGrass.png" type="Texture" id=1]
 [ext_resource path="res://Art/Ground.png" type="Texture" id=2]
 [ext_resource path="res://Art/Door.png" type="Texture" id=3]
-[ext_resource path="res://Art/FloorSupports.png" type="Texture" id=4]
-[ext_resource path="res://Art/FloorNormal.png" type="Texture" id=5]
-[ext_resource path="res://Art/WallWood.png" type="Texture" id=6]
-[ext_resource path="res://Art/WallWoodBack.png" type="Texture" id=7]
-[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=8]
-[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=9]
-[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=10]
+[ext_resource path="res://Art/Bed.png" type="Texture" id=4]
+[ext_resource path="res://Art/FloorSupports.png" type="Texture" id=5]
+[ext_resource path="res://Art/FloorNormal.png" type="Texture" id=6]
+[ext_resource path="res://Art/Stairs.png" type="Texture" id=7]
+[ext_resource path="res://Art/WallWood.png" type="Texture" id=8]
+[ext_resource path="res://Art/WallBrick.png" type="Texture" id=9]
+[ext_resource path="res://Art/WallStone.png" type="Texture" id=10]
+[ext_resource path="res://Art/WallCork.png" type="Texture" id=11]
+[ext_resource path="res://Art/WallWoodBack.png" type="Texture" id=12]
+[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=13]
+[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=14]
+[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=15]
 
 [node name="Node2D" type="Node2D"]
 
@@ -32,53 +37,78 @@ transform/pos = Vector2( 1.12321, 193.126 )
 texture = ExtResource( 3 )
 centered = false
 
+[node name="Bed" type="Sprite" parent="."]
+
+transform/pos = Vector2( 1.12321, 540.753 )
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+centered = false
+
 [node name="FloorSupports" type="Sprite" parent="."]
 
 transform/pos = Vector2( 360.391, 0 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="FloorNormal" type="Sprite" parent="."]
 
 transform/pos = Vector2( 360.391, 197.67 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Stairs" type="Sprite" parent="."]
+
+transform/pos = Vector2( 360.391, 363.531 )
 transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 centered = false
 
 [node name="WallWood" type="Sprite" parent="."]
 
 transform/pos = Vector2( 537.391, 0 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="WallBrick" type="Sprite" parent="."]
+
+transform/pos = Vector2( 537.391, 193.126 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="WallStone" type="Sprite" parent="."]
+
+transform/pos = Vector2( 537.391, 393.068 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="WallCork" type="Sprite" parent="."]
+
+transform/pos = Vector2( 537.391, 593.011 )
+texture = ExtResource( 11 )
 centered = false
 
 [node name="WallWoodBack" type="Sprite" parent="."]
 
 transform/pos = Vector2( 709.39, 0 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 12 )
 centered = false
 
 [node name="RoofFlat" type="Sprite" parent="."]
 
 transform/pos = Vector2( 895.7, 0 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 8 )
+texture = ExtResource( 13 )
 centered = false
 
 [node name="WindowOpen" type="Sprite" parent="."]
 
 transform/pos = Vector2( 895.7, 204.486 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 9 )
+texture = ExtResource( 14 )
 centered = false
 
 [node name="WindowGlass" type="Sprite" parent="."]
 
 transform/pos = Vector2( 895.7, 415.789 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 10 )
+texture = ExtResource( 15 )
 centered = false
 
 
