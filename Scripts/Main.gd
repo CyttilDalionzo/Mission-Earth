@@ -16,6 +16,7 @@ var current_tile = 0
 var current_tile_map = 0
 var current_flip_x = 0
 var current_flip_y = 0
+var current_transpose = 0
 
 var level_grid = []
 var tile_map = [null, null, null]
@@ -78,25 +79,33 @@ func _input(ev):
 	var grid_pos_y = floor(mouse_pos.y/cell_size)
 	
 	# arbitrary check to make sure we can't place things underneath GUI  (NEEDS TO BE IMPROVED)
-	if(ev.pos.y > get_node("CanvasLayer/Control/TabContainer").get_pos().y):
+	if(ev != null && ev.pos.length() > 0 && ev.pos.y > get_node("CanvasLayer/Control/TabContainer").get_pos().y):
 		return
 	
 	if (ev.type == InputEvent.MOUSE_BUTTON):
 		if(ev.pressed):
-			if(ev.button_index == BUTTON_LEFT):
-				tile_map[current_tile_map].set_cell(grid_pos_x,grid_pos_y, current_tile, current_flip_x)
-			elif(ev.button_index == BUTTON_RIGHT):
-				current_flip_x = (current_flip_x+1)%2
-			elif(ev.button_index == BUTTON_WHEEL_UP):
-				main_camera.set_zoom(Vector2(2,2))
-			elif(ev.button_index == BUTTON_WHEEL_DOWN):
+			var button = ev.button_index
+			if(button == BUTTON_LEFT):
+				tile_map[current_tile_map].set_cell(grid_pos_x,grid_pos_y, current_tile, current_flip_x, current_flip_y, current_transpose)
+			elif(button == BUTTON_MIDDLE):
+				current_flip_x = (current_flip_x+1+current_transpose)%2
+				current_transpose = (current_transpose+1)%2
+				current_flip_y = abs(current_flip_x - current_transpose)
+			elif(button == BUTTON_RIGHT):
+				for i in range(3):
+					if(tile_map[i].get_cell(grid_pos_x, grid_pos_y) != -1):
+						tile_map[i].set_cell(grid_pos_x, grid_pos_y, -1)
+						break
+			elif(button == BUTTON_WHEEL_UP):
+				main_camera.set_zoom(Vector2(1.5,1.5))
+			elif(button == BUTTON_WHEEL_DOWN):
 				main_camera.set_zoom(Vector2(1,1))
 		# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
 		# get_node("Light2D").set_pos(Vector2(mouse_pos.x, mouse_pos.y))
 		if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
 			preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
-			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x)
+			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x, current_flip_y, current_transpose)
 			old_preview = [grid_pos_x, grid_pos_y]
 		# test_sprite.set_pos(Vector2(grid_pos_x*cell_size, grid_pos_y*cell_size))
 
@@ -108,6 +117,7 @@ func move_camera():
 	# clamp movement according to grid limits
 	# TO DO: Take into account zoom
 	var mouse_pos = main_camera.get_viewport().get_mouse_pos()
+	# var temp_zoom = main_camera.get_zoom()
 	var left_side = 1
 	if(mouse_pos.x < screen_width*0.5):
 		left_side = -1
