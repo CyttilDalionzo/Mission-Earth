@@ -1,45 +1,133 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="TileSet" subresource_count="20" version="2.1" version_name="Godot Engine v2.1.stable.official">
-	<ext_resource path="res://Art/Door.png" type="Texture" index="11"></ext_resource>
-	<ext_resource path="res://Art/WallBrick.png" type="Texture" index="18"></ext_resource>
-	<ext_resource path="res://Art/WindowGlass.png" type="Texture" index="10"></ext_resource>
-	<ext_resource path="res://Art/GroundGrass.png" type="Texture" index="0"></ext_resource>
-	<ext_resource path="res://Art/WallWood.png" type="Texture" index="16"></ext_resource>
-	<ext_resource path="res://Art/FloorNormal.png" type="Texture" index="14"></ext_resource>
+<resource_file type="TileSet" subresource_count="38" version="2.1" version_name="Godot Engine v2.1.stable.official">
+	<ext_resource path="res://Art/WallBrick.png" type="Texture" index="21"></ext_resource>
+	<ext_resource path="res://Art/FloorSupports.png" type="Texture" index="16"></ext_resource>
+	<ext_resource path="res://Art/FloorNormal.png" type="Texture" index="17"></ext_resource>
+	<ext_resource path="res://Art/WallWood.png" type="Texture" index="19"></ext_resource>
+	<ext_resource path="res://Art/Door.png" type="Texture" index="12"></ext_resource>
 	<ext_resource path="res://Art/RoofFlat.png" type="Texture" index="7"></ext_resource>
-	<ext_resource path="res://Art/Stairs.png" type="Texture" index="15"></ext_resource>
-	<ext_resource path="res://Art/WallWoodBack.png" type="Texture" index="17"></ext_resource>
-	<ext_resource path="res://Art/Bed.png" type="Texture" index="12"></ext_resource>
+	<ext_resource path="res://Art/GroundGrass.png" type="Texture" index="0"></ext_resource>
+	<ext_resource path="res://Art/WindowGlass.png" type="Texture" index="10"></ext_resource>
+	<ext_resource path="res://Art/Stairs.png" type="Texture" index="18"></ext_resource>
+	<ext_resource path="res://Art/WallWoodBack.png" type="Texture" index="20"></ext_resource>
+	<ext_resource path="res://Art/Bed.png" type="Texture" index="15"></ext_resource>
 	<ext_resource path="res://Art/WallStone.png" type="Texture" index="3"></ext_resource>
 	<ext_resource path="res://Art/WallCork.png" type="Texture" index="5"></ext_resource>
-	<ext_resource path="res://Art/FloorSupports.png" type="Texture" index="13"></ext_resource>
 	<ext_resource path="res://Art/Ground.png" type="Texture" index="1"></ext_resource>
-	<ext_resource path="res://Art/WindowOpen.png" type="Texture" index="9"></ext_resource>
 	<ext_resource path="res://Art/WallCorkBack.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://Art/RoofAngled.png" type="Texture" index="8"></ext_resource>
+	<ext_resource path="res://Art/WindowOpen.png" type="Texture" index="9"></ext_resource>
 	<ext_resource path="res://Art/WallStoneBack.png" type="Texture" index="4"></ext_resource>
 	<ext_resource path="res://Art/WallBrickBack.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://Art/LightBulbBad.png" type="Texture" index="11"></ext_resource>
+	<ext_resource path="res://Art/LightBulbGood.png" type="Texture" index="13"></ext_resource>
+	<ext_resource path="res://Art/LightBulbLED.png" type="Texture" index="14"></ext_resource>
+	<resource type="OccluderPolygon2D" path="local://10">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			0.198761, 17.7357, 0.198761, 148.01, 150.516, 148.01, 150.516, 17.7357 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://1">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			149.433, -0.916992, 149.433, 149.083, -0.56694, 149.083, -0.56694, -0.916992 </vector2_array>
+
+	</resource>
+	<resource type="OccluderPolygon2D" path="local://9">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			-1.27705, 0.0563202, -1.27705, 152.057, 150.723, 152.057, 150.723, 0.0563202 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://2">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			150.295, 0, 150.295, 150, 0.294998, 150, 0.294998, 0 </vector2_array>
+
+	</resource>
+	<resource type="OccluderPolygon2D" path="local://8">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			122.163, -0.380615, 122.163, 150.88, 142.066, 150.88, 142.066, -0.380615 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://6">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			150, 0, 150.422, 152.863, 111.88, 152.863, 111.88, 0.152435 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://7">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			150.679, 0.493774, 150.679, 153.172, 112.36, 153.172, 112.36, 0.493774 </vector2_array>
+
+	</resource>
+	<resource type="OccluderPolygon2D" path="local://16">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			-0.268616, 7.51381, -1.08313, 30.3201, 150.415, 30.3201, 150.415, 7.51381 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://15">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			149.601, -0.631287, 149.601, 38.4651, -0.268616, 38.4651, -0.268616, -0.631287 </vector2_array>
+
+	</resource>
+	<resource type="OccluderPolygon2D" path="local://12">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			-0.0388184, 10.8384, -0.702209, 151.484, 150.558, 151.484, 150.558, 10.8384 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://3">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			149.609, 0, 149.609, 150, -0.390991, 150, -0.390991, 0 </vector2_array>
+
+	</resource>
+	<resource type="OccluderPolygon2D" path="local://14">
+		<bool name="closed"> True </bool>
+		<int name="cull_mode"> 0 </int>
+		<vector2_array name="polygon" len="4"> 			1.06458, 6.89867, 1.06458, 27.338, 151.124, 27.5958, 150.855, 6.89867 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://13">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			150.455, -0.882248, 150.455, 36.8532, 1.10199, 36.8532, 1.10199, -0.882248 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://11">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			152.609, 0, 152.609, 150, 112.609, 150, 112.609, 0 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://5">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			150.572, -7.72359, 150.572, 143.218, 112.837, 143.218, 112.837, -7.72359 </vector2_array>
+
+	</resource>
 	<main_resource>
 		<string name="0/name"> "GroundGrass" </string>
 		<resource name="0/texture" external="0">  </resource>
 		<vector2 name="0/tex_offset"> 0.0330048, -27.6634 </vector2>
 		<resource name="0/material"></resource>		<rect2 name="0/region"> 0, 0, 151, 178 </rect2>
 		<vector2 name="0/occluder_offset"> -0, -0 </vector2>
-		<resource name="0/occluder"></resource>		<vector2 name="0/navigation_offset"> -0, -0 </vector2>
-		<resource name="0/navigation"></resource>		<vector2 name="0/shape_offset"> 0, 0 </vector2>
-		<array name="0/shapes" len="0" shared="false">
+		<resource name="0/occluder" resource_type="OccluderPolygon2D" path="local://10">  </resource>
+		<vector2 name="0/navigation_offset"> -0, -0 </vector2>
+		<resource name="0/navigation"></resource>		<vector2 name="0/shape_offset"> -0, -0 </vector2>
+		<array name="0/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://1">  </resource>
 		</array>
 		<string name="1/name"> "Ground" </string>
 		<resource name="1/texture" external="1">  </resource>
 		<vector2 name="1/tex_offset"> 0, 0 </vector2>
 		<resource name="1/material"></resource>		<rect2 name="1/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="1/occluder_offset"> -0, -0 </vector2>
-		<resource name="1/occluder"></resource>		<vector2 name="1/navigation_offset"> -0, -0 </vector2>
-		<resource name="1/navigation"></resource>		<vector2 name="1/shape_offset"> 0, 0 </vector2>
-		<array name="1/shapes" len="0" shared="false">
+		<resource name="1/occluder" resource_type="OccluderPolygon2D" path="local://9">  </resource>
+		<vector2 name="1/navigation_offset"> -0, -0 </vector2>
+		<resource name="1/navigation"></resource>		<vector2 name="1/shape_offset"> -0, -0 </vector2>
+		<array name="1/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://2">  </resource>
 		</array>
 		<string name="2/name"> "Door" </string>
-		<resource name="2/texture" external="11">  </resource>
+		<resource name="2/texture" external="12">  </resource>
 		<vector2 name="2/tex_offset"> 0, 0 </vector2>
 		<resource name="2/material"></resource>		<rect2 name="2/region"> 0, 0, 301, 301 </rect2>
 		<vector2 name="2/occluder_offset"> -0, -0 </vector2>
@@ -48,7 +136,7 @@
 		<array name="2/shapes" len="0" shared="false">
 		</array>
 		<string name="3/name"> "Bed" </string>
-		<resource name="3/texture" external="12">  </resource>
+		<resource name="3/texture" external="15">  </resource>
 		<vector2 name="3/tex_offset"> 0, 0 </vector2>
 		<resource name="3/material"></resource>		<rect2 name="3/region"> 0, 0, 301, 151 </rect2>
 		<vector2 name="3/occluder_offset"> -0, -0 </vector2>
@@ -57,25 +145,29 @@
 		<array name="3/shapes" len="0" shared="false">
 		</array>
 		<string name="4/name"> "FloorSupports" </string>
-		<resource name="4/texture" external="13">  </resource>
+		<resource name="4/texture" external="16">  </resource>
 		<vector2 name="4/tex_offset"> 0, 0 </vector2>
 		<resource name="4/material"></resource>		<rect2 name="4/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="4/occluder_offset"> -0, -0 </vector2>
-		<resource name="4/occluder"></resource>		<vector2 name="4/navigation_offset"> -0, -0 </vector2>
-		<resource name="4/navigation"></resource>		<vector2 name="4/shape_offset"> 0, 0 </vector2>
-		<array name="4/shapes" len="0" shared="false">
+		<resource name="4/occluder" resource_type="OccluderPolygon2D" path="local://12">  </resource>
+		<vector2 name="4/navigation_offset"> -0, -0 </vector2>
+		<resource name="4/navigation"></resource>		<vector2 name="4/shape_offset"> -0, -0 </vector2>
+		<array name="4/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://3">  </resource>
 		</array>
 		<string name="5/name"> "FloorNormal" </string>
-		<resource name="5/texture" external="14">  </resource>
+		<resource name="5/texture" external="17">  </resource>
 		<vector2 name="5/tex_offset"> 0, 0 </vector2>
 		<resource name="5/material"></resource>		<rect2 name="5/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="5/occluder_offset"> -0, -0 </vector2>
-		<resource name="5/occluder"></resource>		<vector2 name="5/navigation_offset"> -0, -0 </vector2>
-		<resource name="5/navigation"></resource>		<vector2 name="5/shape_offset"> 0, 0 </vector2>
-		<array name="5/shapes" len="0" shared="false">
+		<resource name="5/occluder" resource_type="OccluderPolygon2D" path="local://14">  </resource>
+		<vector2 name="5/navigation_offset"> -0, -0 </vector2>
+		<resource name="5/navigation"></resource>		<vector2 name="5/shape_offset"> -0, -0 </vector2>
+		<array name="5/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://13">  </resource>
 		</array>
 		<string name="6/name"> "Stairs" </string>
-		<resource name="6/texture" external="15">  </resource>
+		<resource name="6/texture" external="18">  </resource>
 		<vector2 name="6/tex_offset"> 0, 0 </vector2>
 		<resource name="6/material"></resource>		<rect2 name="6/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="6/occluder_offset"> -0, -0 </vector2>
@@ -84,16 +176,18 @@
 		<array name="6/shapes" len="0" shared="false">
 		</array>
 		<string name="7/name"> "WallWood" </string>
-		<resource name="7/texture" external="16">  </resource>
+		<resource name="7/texture" external="19">  </resource>
 		<vector2 name="7/tex_offset"> 0, 0 </vector2>
 		<resource name="7/material"></resource>		<rect2 name="7/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="7/occluder_offset"> -0, -0 </vector2>
-		<resource name="7/occluder"></resource>		<vector2 name="7/navigation_offset"> -0, -0 </vector2>
-		<resource name="7/navigation"></resource>		<vector2 name="7/shape_offset"> 0, 0 </vector2>
-		<array name="7/shapes" len="0" shared="false">
+		<resource name="7/occluder" resource_type="OccluderPolygon2D" path="local://8">  </resource>
+		<vector2 name="7/navigation_offset"> -0, -0 </vector2>
+		<resource name="7/navigation"></resource>		<vector2 name="7/shape_offset"> -0, -0 </vector2>
+		<array name="7/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://11">  </resource>
 		</array>
 		<string name="8/name"> "WallWoodBack" </string>
-		<resource name="8/texture" external="17">  </resource>
+		<resource name="8/texture" external="20">  </resource>
 		<vector2 name="8/tex_offset"> 0, 0 </vector2>
 		<resource name="8/material"></resource>		<rect2 name="8/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="8/occluder_offset"> -0, -0 </vector2>
@@ -102,13 +196,15 @@
 		<array name="8/shapes" len="0" shared="false">
 		</array>
 		<string name="9/name"> "WallBrick" </string>
-		<resource name="9/texture" external="18">  </resource>
+		<resource name="9/texture" external="21">  </resource>
 		<vector2 name="9/tex_offset"> 0, 0 </vector2>
 		<resource name="9/material"></resource>		<rect2 name="9/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="9/occluder_offset"> -0, -0 </vector2>
-		<resource name="9/occluder"></resource>		<vector2 name="9/navigation_offset"> -0, -0 </vector2>
-		<resource name="9/navigation"></resource>		<vector2 name="9/shape_offset"> 0, 0 </vector2>
-		<array name="9/shapes" len="0" shared="false">
+		<resource name="9/occluder" resource_type="OccluderPolygon2D" path="local://8">  </resource>
+		<vector2 name="9/navigation_offset"> -0, -0 </vector2>
+		<resource name="9/navigation"></resource>		<vector2 name="9/shape_offset"> -0, -0 </vector2>
+		<array name="9/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://5">  </resource>
 		</array>
 		<string name="10/name"> "WallBrickBack" </string>
 		<resource name="10/texture" external="2">  </resource>
@@ -124,9 +220,11 @@
 		<vector2 name="11/tex_offset"> 0, 0 </vector2>
 		<resource name="11/material"></resource>		<rect2 name="11/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="11/occluder_offset"> -0, -0 </vector2>
-		<resource name="11/occluder"></resource>		<vector2 name="11/navigation_offset"> -0, -0 </vector2>
-		<resource name="11/navigation"></resource>		<vector2 name="11/shape_offset"> 0, 0 </vector2>
-		<array name="11/shapes" len="0" shared="false">
+		<resource name="11/occluder" resource_type="OccluderPolygon2D" path="local://8">  </resource>
+		<vector2 name="11/navigation_offset"> -0, -0 </vector2>
+		<resource name="11/navigation"></resource>		<vector2 name="11/shape_offset"> -0, -0 </vector2>
+		<array name="11/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://6">  </resource>
 		</array>
 		<string name="12/name"> "WallStoneBack" </string>
 		<resource name="12/texture" external="4">  </resource>
@@ -142,9 +240,11 @@
 		<vector2 name="13/tex_offset"> 0, 0 </vector2>
 		<resource name="13/material"></resource>		<rect2 name="13/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="13/occluder_offset"> -0, -0 </vector2>
-		<resource name="13/occluder"></resource>		<vector2 name="13/navigation_offset"> -0, -0 </vector2>
-		<resource name="13/navigation"></resource>		<vector2 name="13/shape_offset"> 0, 0 </vector2>
-		<array name="13/shapes" len="0" shared="false">
+		<resource name="13/occluder" resource_type="OccluderPolygon2D" path="local://8">  </resource>
+		<vector2 name="13/navigation_offset"> -0, -0 </vector2>
+		<resource name="13/navigation"></resource>		<vector2 name="13/shape_offset"> -0, -0 </vector2>
+		<array name="13/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://7">  </resource>
 		</array>
 		<string name="14/name"> "WallCorkBack" </string>
 		<resource name="14/texture" external="6">  </resource>
@@ -160,9 +260,11 @@
 		<vector2 name="15/tex_offset"> 0, 0 </vector2>
 		<resource name="15/material"></resource>		<rect2 name="15/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="15/occluder_offset"> -0, -0 </vector2>
-		<resource name="15/occluder"></resource>		<vector2 name="15/navigation_offset"> -0, -0 </vector2>
-		<resource name="15/navigation"></resource>		<vector2 name="15/shape_offset"> 0, 0 </vector2>
-		<array name="15/shapes" len="0" shared="false">
+		<resource name="15/occluder" resource_type="OccluderPolygon2D" path="local://16">  </resource>
+		<vector2 name="15/navigation_offset"> -0, -0 </vector2>
+		<resource name="15/navigation"></resource>		<vector2 name="15/shape_offset"> -0, -0 </vector2>
+		<array name="15/shapes" len="1" shared="false">
+			<resource  resource_type="Shape2D" path="local://15">  </resource>
 		</array>
 		<string name="16/name"> "RoofAngled" </string>
 		<resource name="16/texture" external="8">  </resource>
@@ -190,6 +292,33 @@
 		<resource name="18/occluder"></resource>		<vector2 name="18/navigation_offset"> -0, -0 </vector2>
 		<resource name="18/navigation"></resource>		<vector2 name="18/shape_offset"> 0, 0 </vector2>
 		<array name="18/shapes" len="0" shared="false">
+		</array>
+		<string name="19/name"> "LightBulbBad" </string>
+		<resource name="19/texture" external="11">  </resource>
+		<vector2 name="19/tex_offset"> 0, 0 </vector2>
+		<resource name="19/material"></resource>		<rect2 name="19/region"> 0, 0, 151, 151 </rect2>
+		<vector2 name="19/occluder_offset"> -0, -0 </vector2>
+		<resource name="19/occluder"></resource>		<vector2 name="19/navigation_offset"> -0, -0 </vector2>
+		<resource name="19/navigation"></resource>		<vector2 name="19/shape_offset"> 0, 0 </vector2>
+		<array name="19/shapes" len="0" shared="false">
+		</array>
+		<string name="20/name"> "LightBulbGood" </string>
+		<resource name="20/texture" external="13">  </resource>
+		<vector2 name="20/tex_offset"> 0, 0 </vector2>
+		<resource name="20/material"></resource>		<rect2 name="20/region"> 0, 0, 151, 151 </rect2>
+		<vector2 name="20/occluder_offset"> -0, -0 </vector2>
+		<resource name="20/occluder"></resource>		<vector2 name="20/navigation_offset"> -0, -0 </vector2>
+		<resource name="20/navigation"></resource>		<vector2 name="20/shape_offset"> 0, 0 </vector2>
+		<array name="20/shapes" len="0" shared="false">
+		</array>
+		<string name="21/name"> "LightBulbLED" </string>
+		<resource name="21/texture" external="14">  </resource>
+		<vector2 name="21/tex_offset"> 0, 0 </vector2>
+		<resource name="21/material"></resource>		<rect2 name="21/region"> 0, 0, 151, 151 </rect2>
+		<vector2 name="21/occluder_offset"> -0, -0 </vector2>
+		<resource name="21/occluder"></resource>		<vector2 name="21/navigation_offset"> -0, -0 </vector2>
+		<resource name="21/navigation"></resource>		<vector2 name="21/shape_offset"> 0, 0 </vector2>
+		<array name="21/shapes" len="0" shared="false">
 		</array>
 
 	</main_resource>
