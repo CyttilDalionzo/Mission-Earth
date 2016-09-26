@@ -31,6 +31,12 @@ var day_tracker = 0
 
 var light_preload = null
 
+var money = 1234
+var health = 100
+var hunger = 100
+var thirst = 100
+var happiness = 100
+
 # main_camera.set_zoom(Vector2(2,2))
 
 #current_flip_x = (current_flip_x+1+current_transpose)%2
@@ -38,6 +44,8 @@ var light_preload = null
 #current_flip_y = abs(current_flip_x - current_transpose)
 
 func _ready():
+	randomize()
+	
 	tile_map[0] = get_node("TileMapFront")
 	tile_map[1] = get_node("TileMapMiddleFront")
 	tile_map[2] = get_node("TileMapMiddleBack")
@@ -61,7 +69,14 @@ func _ready():
 	main_camera.set_limit(MARGIN_RIGHT, grid_width)
 	main_camera.set_limit(MARGIN_BOTTOM, grid_height)
 	
+	get_node("DrawingDevice").set_variables(level_width, level_height, cell_size)
+	
+	get_node("Grid").grid_width = grid_width
+	get_node("Grid").grid_height = grid_height
+	get_node("Grid").cell_size = cell_size
+	
 	initialize_tiles()
+	update_player_properties()
 	
 	set_process_input(true)
 	set_process(true)
@@ -82,19 +97,6 @@ func initialize_tiles():
 			else:
 				level_grid[i][j] = 0
 
-# GRID
-func _draw():
-	var cur_width = 0
-	var cur_height = 0
-	
-	while cur_width < grid_width:
-		draw_line(Vector2(cur_width,0), Vector2(cur_width, grid_height), Color(0, 0.17, 0, 0.5), 3)
-		cur_width += cell_size
-	
-	while cur_height < grid_height:
-		draw_line(Vector2(0,cur_height), Vector2(grid_width, cur_height), Color(0, 0.17, 0, 0.5), 3)
-		cur_height += cell_size
-
 func _input(ev):
 	# check if mouse button clicked      (or use ev.pos)
 	var mouse_pos = get_global_mouse_pos()
@@ -103,7 +105,7 @@ func _input(ev):
 	
 	if (ev.type == InputEvent.MOUSE_BUTTON):
 		# arbitrary check to make sure we can't place things underneath GUI  (NEEDS TO BE IMPROVED)
-		if(ev != null && ev.pos.length() > 0 && ev.pos.y > get_node("CanvasLayer/Control/TabContainer").get_pos().y):
+		if(ev.pos != null && ev.pos.y > get_node("GUI/Control/TabContainer").get_pos().y):
 			return
 		if(ev.pressed):
 			var button = ev.button_index
@@ -138,6 +140,14 @@ func _input(ev):
 func _process(delta):
 	move_camera()
 	day_night_cycle()
+
+func update_player_properties():
+	get_node("GUI/PlayerProperties/Health").set_size(Vector2(health*1.8,20))
+	get_node("GUI/PlayerProperties/Hunger").set_size(Vector2(hunger*1.8,20))
+	get_node("GUI/PlayerProperties/Thirst").set_size(Vector2(thirst*1.8,20))
+	get_node("GUI/PlayerProperties/Happiness").set_size(Vector2(happiness*1.8,20))
+	
+	get_node("GUI/PlayerProperties/Money").set_text(str(money))
 
 func day_night_cycle():
 	day_tracker += 0.001

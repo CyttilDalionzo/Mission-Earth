@@ -1,32 +1,34 @@
-[gd_scene load_steps=29 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Art/Light.png" type="Texture" id=2]
-[ext_resource path="res://Art/SolidWhite.png" type="Texture" id=3]
-[ext_resource path="res://TileSet.xml" type="TileSet" id=4]
-[ext_resource path="res://Scripts/GUI_Main.gd" type="Script" id=5]
-[ext_resource path="res://Art/WallWood.png" type="Texture" id=6]
-[ext_resource path="res://Art/WallWoodBack.png" type="Texture" id=7]
-[ext_resource path="res://Art/WallStone.png" type="Texture" id=8]
-[ext_resource path="res://Art/WallStoneBack.png" type="Texture" id=9]
-[ext_resource path="res://Art/WallBrick.png" type="Texture" id=10]
-[ext_resource path="res://Art/WallBrickBack.png" type="Texture" id=11]
-[ext_resource path="res://Art/WallCork.png" type="Texture" id=12]
-[ext_resource path="res://Art/WallCorkBack.png" type="Texture" id=13]
-[ext_resource path="res://Art/FloorSupports.png" type="Texture" id=14]
-[ext_resource path="res://Art/FloorNormal.png" type="Texture" id=15]
-[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=16]
-[ext_resource path="res://Art/RoofAngled.png" type="Texture" id=17]
-[ext_resource path="res://Art/Stairs.png" type="Texture" id=18]
-[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=19]
-[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=20]
-[ext_resource path="res://Art/Door.png" type="Texture" id=21]
-[ext_resource path="res://Art/Bed.png" type="Texture" id=22]
-[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=23]
-[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=24]
-[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=25]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=26]
-[ext_resource path="res://Art/Player.png" type="Texture" id=27]
+[ext_resource path="res://Scripts/Grid.gd" type="Script" id=2]
+[ext_resource path="res://Art/Light.png" type="Texture" id=3]
+[ext_resource path="res://Art/SolidWhite.png" type="Texture" id=4]
+[ext_resource path="res://TileSet.xml" type="TileSet" id=5]
+[ext_resource path="res://Scripts/DrawingDevice.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/GUI_Main.gd" type="Script" id=7]
+[ext_resource path="res://Art/WallWood.png" type="Texture" id=8]
+[ext_resource path="res://Art/WallWoodBack.png" type="Texture" id=9]
+[ext_resource path="res://Art/WallStone.png" type="Texture" id=10]
+[ext_resource path="res://Art/WallStoneBack.png" type="Texture" id=11]
+[ext_resource path="res://Art/WallBrick.png" type="Texture" id=12]
+[ext_resource path="res://Art/WallBrickBack.png" type="Texture" id=13]
+[ext_resource path="res://Art/WallCork.png" type="Texture" id=14]
+[ext_resource path="res://Art/WallCorkBack.png" type="Texture" id=15]
+[ext_resource path="res://Art/FloorSupports.png" type="Texture" id=16]
+[ext_resource path="res://Art/FloorNormal.png" type="Texture" id=17]
+[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=18]
+[ext_resource path="res://Art/RoofAngled.png" type="Texture" id=19]
+[ext_resource path="res://Art/Stairs.png" type="Texture" id=20]
+[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=21]
+[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=22]
+[ext_resource path="res://Art/Door.png" type="Texture" id=23]
+[ext_resource path="res://Art/Bed.png" type="Texture" id=24]
+[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=25]
+[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=26]
+[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=27]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=28]
+[ext_resource path="res://Art/Player.png" type="Texture" id=29]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -42,12 +44,16 @@ script/script = ExtResource( 1 )
 visibility/opacity = 0.25
 color = Color( 0.113281, 0.0137177, 0.0137177, 1 )
 
+[node name="Grid" type="Node2D" parent="."]
+
+script/script = ExtResource( 2 )
+
 [node name="SunLight" type="Light2D" parent="."]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 730 )
 enabled = true
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, 0 )
 scale = 5.0
 color = Color( 1, 0.937744, 0.601563, 1 )
@@ -68,7 +74,7 @@ shadow/item_mask = 1
 [node name="Sprite" type="Sprite" parent="SunLight"]
 
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 modulate = Color( 0.964844, 0.907191, 0.293976, 1 )
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -83,7 +89,7 @@ scale = Vector2( 1, 1 )
 
 transform/pos = Vector2( 800, 450 )
 transform/scale = Vector2( 72.7273, 40.9091 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 modulate = Color( 0.0625, 0.00585938, 0.00585938, 1 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
@@ -109,7 +115,7 @@ drag_margin/bottom = 0.0
 [node name="TileMapBack" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 150, 150 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -127,7 +133,7 @@ tile_data = IntArray(  )
 [node name="TileMapMiddleBack" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 150, 150 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -145,7 +151,7 @@ tile_data = IntArray(  )
 [node name="TileMapMiddleFront" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 150, 150 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -163,7 +169,7 @@ tile_data = IntArray(  )
 [node name="TileMapFront" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 150, 150 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -182,7 +188,7 @@ tile_data = IntArray(  )
 
 visibility/opacity = 0.66
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 150, 150 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -197,15 +203,32 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray(  )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="DarkenBackground" type="Sprite" parent="."]
 
-layer = 1
+visibility/opacity = 0.5
+transform/pos = Vector2( 799, 439 )
+transform/scale = Vector2( 74.4545, 44.4545 )
+texture = ExtResource( 4 )
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="DrawingDevice" type="Node2D" parent="."]
+
+visibility/blend_mode = 1
+visibility/light_mask = 2
+z/z = 10
+script/script = ExtResource( 6 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+editor/display_folded = true
+layer = 10
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="GUI"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -214,9 +237,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 7 )
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Control"]
+[node name="TabContainer" type="TabContainer" parent="GUI/Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -229,10 +252,9 @@ margin/bottom = 900.0
 tab_align = 1
 tabs_visible = true
 
-[node name="Walls" type="Tabs" parent="CanvasLayer/Control/TabContainer"]
+[node name="Walls" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -244,7 +266,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="WallWood" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallWood" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -259,9 +281,9 @@ margin/bottom = 180.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 6 )
+textures/normal = ExtResource( 8 )
 
-[node name="WallWoodBack" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallWoodBack" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -276,9 +298,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 7 )
+textures/normal = ExtResource( 9 )
 
-[node name="WallStone" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallStone" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -293,9 +315,9 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 8 )
+textures/normal = ExtResource( 10 )
 
-[node name="WallStoneBack" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallStoneBack" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -310,9 +332,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 9 )
+textures/normal = ExtResource( 11 )
 
-[node name="WallBrick" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallBrick" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -327,9 +349,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 10 )
+textures/normal = ExtResource( 12 )
 
-[node name="WallBrickBack" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallBrickBack" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -344,9 +366,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 11 )
+textures/normal = ExtResource( 13 )
 
-[node name="WallCork" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallCork" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -361,9 +383,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 12 )
+textures/normal = ExtResource( 14 )
 
-[node name="WallCorkBack" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Walls"]
+[node name="WallCorkBack" type="TextureButton" parent="GUI/Control/TabContainer/Walls"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 hint/tooltip = "A wooden wall, good for a little safety and comfort"
@@ -378,9 +400,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 13 )
+textures/normal = ExtResource( 15 )
 
-[node name="Floors" type="Tabs" parent="CanvasLayer/Control/TabContainer"]
+[node name="Floors" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
 visibility/visible = false
@@ -395,7 +417,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="FloorSupports" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Floors"]
+[node name="FloorSupports" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -409,9 +431,9 @@ margin/bottom = 180.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
+textures/normal = ExtResource( 16 )
 
-[node name="FloorNormal" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Floors"]
+[node name="FloorNormal" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -425,9 +447,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 15 )
+textures/normal = ExtResource( 17 )
 
-[node name="RoofFlat" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Floors"]
+[node name="RoofFlat" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -441,9 +463,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 16 )
+textures/normal = ExtResource( 18 )
 
-[node name="RoofAngled" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Floors"]
+[node name="RoofAngled" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -457,9 +479,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 17 )
+textures/normal = ExtResource( 19 )
 
-[node name="Stairs" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Floors"]
+[node name="Stairs" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -473,9 +495,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 18 )
+textures/normal = ExtResource( 20 )
 
-[node name="Windows" type="Tabs" parent="CanvasLayer/Control/TabContainer"]
+[node name="Windows" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
 visibility/visible = false
@@ -490,7 +512,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="WindowOpen" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Windows"]
+[node name="WindowOpen" type="TextureButton" parent="GUI/Control/TabContainer/Windows"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -504,9 +526,9 @@ margin/bottom = 180.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 19 )
+textures/normal = ExtResource( 21 )
 
-[node name="WindowGlass" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Windows"]
+[node name="WindowGlass" type="TextureButton" parent="GUI/Control/TabContainer/Windows"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -520,9 +542,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 20 )
+textures/normal = ExtResource( 22 )
 
-[node name="Misc" type="Tabs" parent="CanvasLayer/Control/TabContainer"]
+[node name="Misc" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
 visibility/visible = false
@@ -537,7 +559,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="Door" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Misc"]
+[node name="Door" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
 
 rect/scale = Vector2( 0.25, 0.25 )
 focus/ignore_mouse = false
@@ -551,9 +573,9 @@ margin/bottom = 329.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 21 )
+textures/normal = ExtResource( 23 )
 
-[node name="Bed" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Misc"]
+[node name="Bed" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
 
 rect/scale = Vector2( 0.25, 0.25 )
 focus/ignore_mouse = false
@@ -567,11 +589,12 @@ margin/bottom = 329.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 22 )
+textures/normal = ExtResource( 24 )
 
-[node name="Lights" type="Tabs" parent="CanvasLayer/Control/TabContainer"]
+[node name="Lights" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -583,7 +606,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="LightBulbBad" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Lights"]
+[node name="LightBulbBad" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -597,9 +620,9 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 23 )
+textures/normal = ExtResource( 25 )
 
-[node name="LightBulbGood" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Lights"]
+[node name="LightBulbGood" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -613,9 +636,9 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 24 )
+textures/normal = ExtResource( 26 )
 
-[node name="LightBulbLED" type="TextureButton" parent="CanvasLayer/Control/TabContainer/Lights"]
+[node name="LightBulbLED" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -629,10 +652,98 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 25 )
+textures/normal = ExtResource( 27 )
+
+[node name="PlayerProperties" type="Control" parent="GUI"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Money" type="Label" parent="GUI/PlayerProperties"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1550.0
+margin/top = 10.0
+margin/right = 1590.0
+margin/bottom = 41.0
+text = "5555"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Health" type="TextureFrame" parent="GUI/PlayerProperties"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 170.0
+margin/bottom = 30.0
+texture = ExtResource( 4 )
+modulate = Color( 1, 0, 0, 1 )
+expand = true
+stretch_mode = 0
+
+[node name="Hunger" type="TextureFrame" parent="GUI/PlayerProperties"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 40.0
+margin/right = 170.0
+margin/bottom = 60.0
+texture = ExtResource( 4 )
+modulate = Color( 0.453125, 1, 0, 1 )
+expand = true
+stretch_mode = 0
+
+[node name="Thirst" type="TextureFrame" parent="GUI/PlayerProperties"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 70.0
+margin/right = 170.0
+margin/bottom = 90.0
+texture = ExtResource( 4 )
+modulate = Color( 0, 0.976563, 1, 1 )
+expand = true
+stretch_mode = 0
+
+[node name="Happiness" type="TextureFrame" parent="GUI/PlayerProperties"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 100.0
+margin/right = 170.0
+margin/bottom = 120.0
+texture = ExtResource( 4 )
+modulate = Color( 0.664063, 0, 1, 1 )
+expand = true
+stretch_mode = 0
 
 [node name="Player" type="KinematicBody2D" parent="."]
 
+editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 152, 192 )
@@ -640,12 +751,12 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 26 )
+script/script = ExtResource( 28 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( 157, 192 )
-texture = ExtResource( 27 )
+texture = ExtResource( 29 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 
@@ -655,44 +766,44 @@ polygon = Vector2Array( -40, -90, -40, 150, 60, 150, 60, -90 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallWood" to="CanvasLayer/Control" method="_on_WallWood_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallWood" to="GUI/Control" method="_on_WallWood_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallWoodBack" to="CanvasLayer/Control" method="_on_WallWoodBack_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallWoodBack" to="GUI/Control" method="_on_WallWoodBack_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallStone" to="CanvasLayer/Control" method="_on_WallStone_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallStone" to="GUI/Control" method="_on_WallStone_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallStoneBack" to="CanvasLayer/Control" method="_on_WallStoneBack_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallStoneBack" to="GUI/Control" method="_on_WallStoneBack_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallBrick" to="CanvasLayer/Control" method="_on_WallBrick_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallBrick" to="GUI/Control" method="_on_WallBrick_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallBrickBack" to="CanvasLayer/Control" method="_on_WallBrickBack_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallBrickBack" to="GUI/Control" method="_on_WallBrickBack_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallCork" to="CanvasLayer/Control" method="_on_WallCork_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallCork" to="GUI/Control" method="_on_WallCork_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Walls/WallCorkBack" to="CanvasLayer/Control" method="_on_WallCorkBack_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallCorkBack" to="GUI/Control" method="_on_WallCorkBack_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Floors/FloorSupports" to="CanvasLayer/Control" method="_on_FloorSupports_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorSupports" to="GUI/Control" method="_on_FloorSupports_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Floors/FloorNormal" to="CanvasLayer/Control" method="_on_FloorNormal_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorNormal" to="GUI/Control" method="_on_FloorNormal_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Floors/RoofFlat" to="CanvasLayer/Control" method="_on_RoofFlat_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/RoofFlat" to="GUI/Control" method="_on_RoofFlat_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Floors/RoofAngled" to="CanvasLayer/Control" method="_on_RoofAngled_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/RoofAngled" to="GUI/Control" method="_on_RoofAngled_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Floors/Stairs" to="CanvasLayer/Control" method="_on_Stairs_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/Stairs" to="GUI/Control" method="_on_Stairs_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Windows/WindowOpen" to="CanvasLayer/Control" method="_on_WindowOpen_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Windows/WindowOpen" to="GUI/Control" method="_on_WindowOpen_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Windows/WindowGlass" to="CanvasLayer/Control" method="_on_WindowGlass_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Windows/WindowGlass" to="GUI/Control" method="_on_WindowGlass_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Misc/Door" to="CanvasLayer/Control" method="_on_Door_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Door" to="GUI/Control" method="_on_Door_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Misc/Bed" to="CanvasLayer/Control" method="_on_Bed_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Bed" to="GUI/Control" method="_on_Bed_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Lights/LightBulbBad" to="CanvasLayer/Control" method="_on_LightBulbBad_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbBad" to="GUI/Control" method="_on_LightBulbBad_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Lights/LightBulbGood" to="CanvasLayer/Control" method="_on_LightBulbGood_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbGood" to="GUI/Control" method="_on_LightBulbGood_pressed"]
 
-[connection signal="pressed" from="CanvasLayer/Control/TabContainer/Lights/LightBulbLED" to="CanvasLayer/Control" method="_on_LightBulbLED_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbLED" to="GUI/Control" method="_on_LightBulbLED_pressed"]
 
 
