@@ -6,6 +6,11 @@ var main_node = null
 func _ready():
 	main_node = get_tree().get_root().get_node("Main")
 
+func _on_MaintenanceToggle_toggled( pressed ):
+	main_node.maintenance_mode = pressed
+	main_node.get_node("DrawingDevice").turned_on = pressed
+	main_node.get_node("DrawingDevice").update()
+
 func change_tile(num, map, dir):
 	main_node.current_tile = num
 	main_node.current_tile_map = map

@@ -5,11 +5,13 @@ var level_width
 var level_height
 var cell_size
 var electric_grid = []
+var turned_on
 
-func set_variables(a, b, c):
+func set_variables(a, b, c, d):
 	level_width = a
 	level_height = b
 	cell_size = c
+	turned_on = d
 	
 	electric_grid.resize(level_height)
 	
@@ -20,6 +22,10 @@ func set_variables(a, b, c):
 			electric_grid[i][j] = round(randf()*3)
 
 func _draw():
+	# temporary fix to eliminate automatic drawing - is there a better way? there must be.
+	if(!turned_on):
+		return
+	
 	for i in range(level_height):
 		for j in range(level_width):
 			var num = electric_grid[i][j]

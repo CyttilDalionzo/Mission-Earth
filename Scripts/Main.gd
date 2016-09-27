@@ -37,6 +37,10 @@ var hunger = 100
 var thirst = 100
 var happiness = 100
 
+var maintenance_mode = false
+
+var start_mouse_pos
+
 # main_camera.set_zoom(Vector2(2,2))
 
 #current_flip_x = (current_flip_x+1+current_transpose)%2
@@ -56,6 +60,7 @@ func _ready():
 	
 	bg = get_node("Background/SolidWhite")
 	canvas_mod = get_node("CanvasModulate")
+
 	
 	screen_width = get_viewport_rect().size.width
 	screen_height = get_viewport_rect().size.height
@@ -63,17 +68,17 @@ func _ready():
 	grid_width = cell_size*level_width
 	grid_height = cell_size*level_height
 	
+	# canvas_mod.set_scale(Vector2(grid_width/22, grid_height/22))
+	
 	main_camera = get_node("MainCamera")
 	main_camera.set_limit(MARGIN_TOP, 0)
 	main_camera.set_limit(MARGIN_LEFT, 0)    
 	main_camera.set_limit(MARGIN_RIGHT, grid_width)
 	main_camera.set_limit(MARGIN_BOTTOM, grid_height)
 	
-	get_node("DrawingDevice").set_variables(level_width, level_height, cell_size)
+	get_node("DrawingDevice").set_variables(level_width, level_height, cell_size, false)
 	
-	get_node("Grid").grid_width = grid_width
-	get_node("Grid").grid_height = grid_height
-	get_node("Grid").cell_size = cell_size
+	get_node("Grid").set_variables(grid_width, grid_height, cell_size)
 	
 	initialize_tiles()
 	update_player_properties()
@@ -107,11 +112,10 @@ func _input(ev):
 		# arbitrary check to make sure we can't place things underneath GUI  (NEEDS TO BE IMPROVED)
 		if(ev.pos != null && ev.pos.y > get_node("GUI/Control/TabContainer").get_pos().y):
 			return
+		var button = ev.button_index
 		if(ev.pressed):
-			var button = ev.button_index
 			if(button == BUTTON_LEFT):
-				tile_map[current_tile_map].set_cell(grid_pos_x,grid_pos_y, current_tile, current_flip_x, current_flip_y)
-				finish_placement(current_tile, grid_pos_x, grid_pos_y)
+				start_mouse_pos = Vector2(grid_pos_x, grid_pos_y)
 			elif(button == BUTTON_MIDDLE):
 				if(current_flip_dir == 0):
 					current_flip_x = (current_flip_x+1)%2
@@ -130,6 +134,23 @@ func _input(ev):
 				main_camera.set_zoom(Vector2(next_zoom, next_zoom))
 			elif(button == BUTTON_WHEEL_DOWN):
 				main_camera.set_zoom(Vector2(1,1))
+		else:
+			if(button == BUTTON_LEFT):
+				if(grid_pos_x == start_mouse_pos.x):
+					# Place stuff on vertical line
+					var dist = abs(start_mouse_pos.y - grid_pos_y)
+					var min_y = min(start_mouse_pos.y, grid_pos_y)
+					for i in range(dist+1):
+						finish_placement(current_tile, grid_pos_x, min_y+i)
+				elif(grid_pos_y == start_mouse_pos.y):
+					# Place stuff on horizontal line
+					var dist = abs(start_mouse_pos.x - grid_pos_x)
+					var min_x = min(start_mouse_pos.x, grid_pos_x)
+					for i in range(dist+1):
+						finish_placement(current_tile, min_x+i, grid_pos_y)
+				else:
+					# Place a single block
+					finish_placement(current_tile, grid_pos_x, grid_pos_y)
 		# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
 		if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
@@ -160,13 +181,19 @@ func day_night_cycle():
 		day_is_done = 1
 	elif(bg_blue <= -1):
 		day_is_done = 0
-		
-	bg.set_modulate(Color(bg_blue, bg_blue, bg_blue))
-	get_node("SunLight").set_pos(Vector2(cos(PI+0.5*PI*day_tracker)*screen_width*0.5 + screen_width*0.5, sin(PI+0.5*PI*day_tracker)*screen_height + screen_height))
-	get_node("SunLight").set_energy(bg_blue*20)
-	canvas_mod.set_color(Color(bg_blue, bg_blue, bg_blue))
+	
+	if(maintenance_mode):
+		bg.set_modulate(Color(0.25, 0.25, 0.25))
+		canvas_mod.set_color(Color(0.25, 0.25, 0.25))
+	else:
+		bg.set_modulate(Color(bg_blue, bg_blue, bg_blue))
+		get_node("SunLight").set_pos(Vector2(cos(PI+0.5*PI*day_tracker)*screen_width*0.5 + screen_width*0.5, sin(PI+0.5*PI*day_tracker)*screen_height + screen_height))
+		get_node("SunLight").set_energy(bg_blue*20)
+		canvas_mod.set_color(Color(bg_blue, bg_blue, bg_blue))
 
 func finish_placement(n, pos_x, pos_y):
+	tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
+	
 	if(n >= 19 && n <= 21):
 		var new_light = light_preload.instance()
 		if(n == 19):
@@ -200,10 +227,11 @@ func move_camera():
 	var check_bounds_y = abs(mouse_pos.y - screen_height*0.5)
 	
 	if check_bounds_x > screen_width*0.4:
-		main_camera.set_pos(Vector2(main_camera.get_pos().x+8*left_side, main_camera.get_pos().y))
+		main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+8*left_side, 0, grid_width), main_camera.get_pos().y))
 	
 	if check_bounds_y > screen_height*0.4:
-		main_camera.set_pos(Vector2(main_camera.get_pos().x, main_camera.get_pos().y+8*top_side))
+		main_camera.set_pos(Vector2(main_camera.get_pos().x, clamp(main_camera.get_pos().y+8*top_side, 0, grid_height)))
+	
 
 
 

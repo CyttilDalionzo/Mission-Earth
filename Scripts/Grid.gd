@@ -5,6 +5,11 @@ var grid_width
 var grid_height
 var cell_size
 
+func set_variables(a, b, c):
+	grid_width = a
+	grid_height = b
+	cell_size = c
+
 # GRID
 func _draw():
 	var cur_width = 0
