@@ -38,8 +38,10 @@ var thirst = 100
 var happiness = 100
 
 var maintenance_mode = false
+var drawing_device = null
 
 var start_mouse_pos
+var max_zoom
 
 # main_camera.set_zoom(Vector2(2,2))
 
@@ -68,7 +70,7 @@ func _ready():
 	grid_width = cell_size*level_width
 	grid_height = cell_size*level_height
 	
-	# canvas_mod.set_scale(Vector2(grid_width/22, grid_height/22))
+	max_zoom = min(grid_width/screen_width, grid_height/screen_height)
 	
 	main_camera = get_node("MainCamera")
 	main_camera.set_limit(MARGIN_TOP, 0)
@@ -76,7 +78,8 @@ func _ready():
 	main_camera.set_limit(MARGIN_RIGHT, grid_width)
 	main_camera.set_limit(MARGIN_BOTTOM, grid_height)
 	
-	get_node("DrawingDevice").set_variables(level_width, level_height, cell_size, false)
+	drawing_device = get_node("DrawingDevice")
+	drawing_device.set_variables(level_width, level_height, cell_size, false)
 	
 	get_node("Grid").set_variables(grid_width, grid_height, cell_size)
 	
@@ -110,8 +113,9 @@ func _input(ev):
 	
 	if (ev.type == InputEvent.MOUSE_BUTTON):
 		# arbitrary check to make sure we can't place things underneath GUI  (NEEDS TO BE IMPROVED)
-		if(ev.pos != null && ev.pos.y > get_node("GUI/Control/TabContainer").get_pos().y):
+		if(ev.pos.y > get_node("GUI/Control/TabContainer").get_pos().y):
 			return
+		
 		var button = ev.button_index
 		if(ev.pressed):
 			if(button == BUTTON_LEFT):
@@ -123,17 +127,12 @@ func _input(ev):
 				else:
 					current_flip_y = (current_flip_y+1)%2
 					current_flip_x = 0
-			elif(button == BUTTON_RIGHT):
-				for i in range(3):
-					if(tile_map[i].get_cell(grid_pos_x, grid_pos_y) != -1):
-						tile_map[i].set_cell(grid_pos_x, grid_pos_y, -1)
-						break
 			elif(button == BUTTON_WHEEL_UP):
-				var max_zoom = min(grid_width/screen_width, grid_height/screen_height)
-				var next_zoom = clamp(main_camera.get_zoom().x+1.1, 1, max_zoom)
+				var next_zoom = clamp(main_camera.get_zoom().x+0.05, 1, max_zoom)
 				main_camera.set_zoom(Vector2(next_zoom, next_zoom))
 			elif(button == BUTTON_WHEEL_DOWN):
-				main_camera.set_zoom(Vector2(1,1))
+				var next_zoom = clamp(main_camera.get_zoom().x-0.05, 1, max_zoom)
+				main_camera.set_zoom(Vector2(next_zoom,next_zoom))
 		else:
 			if(button == BUTTON_LEFT):
 				if(grid_pos_x == start_mouse_pos.x):
@@ -141,22 +140,25 @@ func _input(ev):
 					var dist = abs(start_mouse_pos.y - grid_pos_y)
 					var min_y = min(start_mouse_pos.y, grid_pos_y)
 					for i in range(dist+1):
-						finish_placement(current_tile, grid_pos_x, min_y+i)
+						finish_placement(current_tile, grid_pos_x, min_y+i, 2)
 				elif(grid_pos_y == start_mouse_pos.y):
 					# Place stuff on horizontal line
 					var dist = abs(start_mouse_pos.x - grid_pos_x)
 					var min_x = min(start_mouse_pos.x, grid_pos_x)
 					for i in range(dist+1):
-						finish_placement(current_tile, min_x+i, grid_pos_y)
+						finish_placement(current_tile, min_x+i, grid_pos_y, 1)
 				else:
 					# Place a single block
-					finish_placement(current_tile, grid_pos_x, grid_pos_y)
+					finish_placement(current_tile, grid_pos_x, grid_pos_y, 0)
+			elif(button == BUTTON_RIGHT):
+				remove_part(grid_pos_x, grid_pos_y)
 		# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
-		if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
-			preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
-			preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x, current_flip_y)
-			old_preview = [grid_pos_x, grid_pos_y]
+		if(!maintenance_mode):
+			if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
+				preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
+				preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x, current_flip_y)
+				old_preview = [grid_pos_x, grid_pos_y]
 
 func _process(delta):
 	move_camera()
@@ -191,26 +193,49 @@ func day_night_cycle():
 		get_node("SunLight").set_energy(bg_blue*20)
 		canvas_mod.set_color(Color(bg_blue, bg_blue, bg_blue))
 
-func finish_placement(n, pos_x, pos_y):
-	tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
-	
-	if(n >= 19 && n <= 21):
-		var new_light = light_preload.instance()
-		if(n == 19):
-			new_light.set_energy(1)
-			new_light.set_texture_scale(4)
-		elif(n == 20):
-			new_light.set_energy(1.25)
-			new_light.set_color(Color(0.9, 0.9, 0.9))
-			new_light.get_child(0).set_modulate(Color(0.9, 0.9, 0.9))
-			new_light.set_texture_scale(4.5)
-		elif(n == 21):
-			new_light.set_energy(1.5)
-			new_light.set_color(Color(0.95, 0.95, 0.95))
-			new_light.get_child(0).set_modulate(Color(1.0, 1.0, 1.0))
-			new_light.set_texture_scale(5)
-		new_light.set_pos(Vector2((pos_x+0.5)*cell_size, (pos_y+0.5)*cell_size))
-		self.add_child(new_light)
+func remove_part(pos_x, pos_y):
+	if(maintenance_mode):
+		drawing_device.electric_grid[pos_y][pos_x] = 0
+		drawing_device.update()
+	else:
+		for i in range(3):
+			var cur_num = tile_map[i].get_cell(pos_x, pos_y)
+			if(cur_num != -1):
+				tile_map[i].set_cell(pos_x, pos_y, -1)
+				if(cur_num >= 19 && cur_num <= 21):
+					drawing_device.delete_light(pos_x, pos_y)
+				break
+
+func finish_placement(n, pos_x, pos_y, dir):
+	if(maintenance_mode):
+		var current_tile = drawing_device.electric_grid[pos_y][pos_x]
+		if(current_tile != 0 && current_tile != dir):
+			dir = 3
+		drawing_device.electric_grid[pos_y][pos_x] = dir
+		drawing_device.update()
+	else:
+		tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
+		
+		if(n >= 19 && n <= 21):
+			var new_light = light_preload.instance()
+			if(n == 19):
+				new_light.set_energy(1)
+				new_light.set_texture_scale(4)
+			elif(n == 20):
+				new_light.set_energy(1.25)
+				new_light.set_color(Color(0.9, 0.9, 0.9))
+				new_light.get_child(0).set_modulate(Color(0.9, 0.9, 0.9))
+				new_light.set_texture_scale(4.5)
+			elif(n == 21):
+				new_light.set_energy(1.5)
+				new_light.set_color(Color(0.95, 0.95, 0.95))
+				new_light.get_child(0).set_modulate(Color(1.0, 1.0, 1.0))
+				new_light.set_texture_scale(5)
+			new_light.set_pos(Vector2((pos_x+0.5)*cell_size, (pos_y+0.5)*cell_size))
+			self.add_child(new_light)
+			new_light.corresponding_coord = Vector2(pos_x, pos_y)
+			new_light.check_connection(drawing_device.connected_grid[pos_y][pos_x])
+			drawing_device.light_sprites.append(new_light)
 
 func move_camera():
 	# Somehow, the camera lags behind a bit?
