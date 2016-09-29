@@ -67,8 +67,9 @@ func check_lights():
 func delete_light(x,y):
 	for i in range(light_sprites.size()):
 		if(light_sprites[i].corresponding_coord == Vector2(x,y)):
-			light_sprites[i].free()
+			light_sprites[i].queue_free()
 			light_sprites.remove(i)
+			break
 
 func _draw():
 	# temporary fix to eliminate automatic drawing - is there a better way? there must be.

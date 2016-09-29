@@ -77,3 +77,12 @@ func _on_LightBulbGood_pressed():
 
 func _on_LightBulbLED_pressed():
 	change_tile(21, 2, 1)
+
+func _on_Toilet_pressed():
+	change_tile(22, 1, 0)
+
+func _on_Shower_pressed():
+	change_tile(23, 1, 0)
+
+func _on_Sink_pressed():
+	change_tile(24, 1, 0)

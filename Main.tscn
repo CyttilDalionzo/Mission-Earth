@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=34 format=1]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Grid.gd" type="Script" id=2]
@@ -24,11 +24,14 @@
 [ext_resource path="res://Art/WindowGlass.png" type="Texture" id=22]
 [ext_resource path="res://Art/Door.png" type="Texture" id=23]
 [ext_resource path="res://Art/Bed.png" type="Texture" id=24]
-[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=25]
-[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=26]
-[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=27]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=28]
-[ext_resource path="res://Art/Player.png" type="Texture" id=29]
+[ext_resource path="res://Art/Toilet.png" type="Texture" id=25]
+[ext_resource path="res://Art/Shower.png" type="Texture" id=26]
+[ext_resource path="res://Art/Sink.png" type="Texture" id=27]
+[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=28]
+[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=29]
+[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=30]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=31]
+[ext_resource path="res://Art/Player.png" type="Texture" id=32]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -230,7 +233,6 @@ script/script = ExtResource( 7 )
 
 [node name="TabContainer" type="TabContainer" parent="GUI/Control"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -245,6 +247,7 @@ tabs_visible = true
 [node name="Walls" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -536,8 +539,6 @@ textures/normal = ExtResource( 22 )
 
 [node name="Misc" type="Tabs" parent="GUI/Control/TabContainer"]
 
-editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -581,6 +582,54 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 24 )
 
+[node name="Toilet" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 256.0
+margin/top = 28.0
+margin/right = 407.0
+margin/bottom = 329.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 25 )
+
+[node name="Shower" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 316.0
+margin/top = 28.0
+margin/right = 467.0
+margin/bottom = 329.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 26 )
+
+[node name="Sink" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 376.0
+margin/top = 28.0
+margin/right = 527.0
+margin/bottom = 329.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 27 )
+
 [node name="Lights" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
@@ -610,7 +659,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 25 )
+textures/normal = ExtResource( 28 )
 
 [node name="LightBulbGood" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -626,7 +675,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 26 )
+textures/normal = ExtResource( 29 )
 
 [node name="LightBulbLED" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -642,7 +691,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 27 )
+textures/normal = ExtResource( 30 )
 
 [node name="MaintenanceToggle" type="CheckButton" parent="GUI/Control"]
 
@@ -758,12 +807,12 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 28 )
+script/script = ExtResource( 31 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( 157, 192 )
-texture = ExtResource( 29 )
+texture = ExtResource( 32 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 
@@ -806,6 +855,12 @@ trigger = false
 [connection signal="pressed" from="GUI/Control/TabContainer/Misc/Door" to="GUI/Control" method="_on_Door_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Misc/Bed" to="GUI/Control" method="_on_Bed_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Toilet" to="GUI/Control" method="_on_Toilet_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Shower" to="GUI/Control" method="_on_Shower_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Sink" to="GUI/Control" method="_on_Sink_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbBad" to="GUI/Control" method="_on_LightBulbBad_pressed"]
 
