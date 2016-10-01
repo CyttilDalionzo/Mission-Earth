@@ -2,14 +2,17 @@
 extends Control
 
 var main_node = null
+var drawing_device = null
 
 func _ready():
 	main_node = get_tree().get_root().get_node("Main")
+	drawing_device = main_node.get_node("DrawingDevice")
 
+# Switch between build and maintenance mode
 func _on_MaintenanceToggle_toggled( pressed ):
 	main_node.maintenance_mode = pressed
-	main_node.get_node("DrawingDevice").turned_on = pressed
-	main_node.get_node("DrawingDevice").update()
+	drawing_device.turned_on = pressed
+	drawing_device.update()
 
 func change_tile(num, map, dir):
 	main_node.current_tile = num
@@ -18,6 +21,7 @@ func change_tile(num, map, dir):
 	# check number, decide whether it can be flipped horizontally (x) or vertically (y), 
 	# then restrict movement in the main_node script
 
+#### ALL TILES ####
 func _on_FloorSupports_pressed():
 	change_tile(4, 0, 0)
 
@@ -86,3 +90,24 @@ func _on_Shower_pressed():
 
 func _on_Sink_pressed():
 	change_tile(24, 1, 0)
+
+#### CHANGE BETWEEN GRIDS ####
+func _on_ElectricGrid_pressed():
+	drawing_device.current_mode = 0
+	drawing_device.update()
+	print("ElectroGrid!")
+
+func _on_WaterGrid_pressed():
+	drawing_device.current_mode = 1
+	drawing_device.update()
+	print("WaterGrid!")
+	
+func _on_WasteGrid_pressed():
+	drawing_device.current_mode = 2
+	drawing_device.update()
+	print("WasteGrid!")
+
+func _on_GasGrid_pressed():
+	drawing_device.current_mode = 3
+	drawing_device.update()
+	print("GasGrid!")

@@ -106,6 +106,17 @@ func initialize_tiles():
 				level_grid[i][j] = 0
 
 func _input(ev):
+	if(ev.type == InputEvent.KEY):
+		if(Input.is_action_pressed("secondary_left")):
+			move_camera(Vector2(-1,0))
+		elif(Input.is_action_pressed("secondary_right")):
+			move_camera(Vector2(1,0))
+		
+		if(Input.is_action_pressed("secondary_up")):
+			move_camera(Vector2(0,-1))
+		elif(Input.is_action_pressed("secondary_down")):
+			move_camera(Vector2(0,1))
+	
 	# check if mouse button clicked      (or use ev.pos)
 	var mouse_pos = get_global_mouse_pos()
 	var grid_pos_x = floor(mouse_pos.x/cell_size)
@@ -118,7 +129,7 @@ func _input(ev):
 		
 		var button = ev.button_index
 		if(ev.pressed):
-			if(button == BUTTON_LEFT):
+			if(button == BUTTON_LEFT || button == BUTTON_RIGHT):
 				start_mouse_pos = Vector2(grid_pos_x, grid_pos_y)
 			elif(button == BUTTON_MIDDLE):
 				if(current_flip_dir == 0):
@@ -134,25 +145,36 @@ func _input(ev):
 				var next_zoom = clamp(main_camera.get_zoom().x-0.05, 1, max_zoom)
 				main_camera.set_zoom(Vector2(next_zoom,next_zoom))
 		else:
-			if(button == BUTTON_LEFT):
+			if(button == BUTTON_LEFT || button == BUTTON_RIGHT):
+				var delete_tiles = false
+				if(button == BUTTON_RIGHT):
+					delete_tiles = true
+				
 				if(grid_pos_x == start_mouse_pos.x):
 					# Place stuff on vertical line
 					var dist = abs(start_mouse_pos.y - grid_pos_y)
 					var min_y = min(start_mouse_pos.y, grid_pos_y)
 					for i in range(dist+1):
-						finish_placement(current_tile, grid_pos_x, min_y+i, 2)
+						if(delete_tiles):
+							remove_part(grid_pos_x, min_y+i)
+						else:
+							finish_placement(current_tile, grid_pos_x, min_y+i, 2)
 				elif(grid_pos_y == start_mouse_pos.y):
 					# Place stuff on horizontal line
 					var dist = abs(start_mouse_pos.x - grid_pos_x)
 					var min_x = min(start_mouse_pos.x, grid_pos_x)
 					for i in range(dist+1):
-						finish_placement(current_tile, min_x+i, grid_pos_y, 1)
+						if(delete_tiles):
+							remove_part(min_x+i, grid_pos_y)
+						else:
+							finish_placement(current_tile, min_x+i, grid_pos_y, 1)
 				else:
 					# Place a single block
-					finish_placement(current_tile, grid_pos_x, grid_pos_y, 0)
-			elif(button == BUTTON_RIGHT):
-				remove_part(grid_pos_x, grid_pos_y)
-		# check if mouse is moving
+					if(delete_tiles):
+						remove_part(grid_pos_x, grid_pos_y)
+					else:
+						finish_placement(current_tile, grid_pos_x, grid_pos_y, 0)
+	# check if mouse is moving
 	elif (ev.type == InputEvent.MOUSE_MOTION):
 		if(!maintenance_mode):
 			if(grid_pos_x != old_preview[0] || grid_pos_y != old_preview[1]): 
@@ -161,7 +183,6 @@ func _input(ev):
 				old_preview = [grid_pos_x, grid_pos_y]
 
 func _process(delta):
-	move_camera()
 	day_night_cycle()
 
 func update_player_properties():
@@ -195,10 +216,10 @@ func day_night_cycle():
 
 func remove_part(pos_x, pos_y):
 	if(maintenance_mode):
-		drawing_device.electric_grid[pos_y][pos_x] = 0
+		# drawing_device.electric_grid[pos_y][pos_x] = 0
 		drawing_device.update()
 	else:
-		for i in range(3):
+		for i in range(4):
 			var cur_num = tile_map[i].get_cell(pos_x, pos_y)
 			if(cur_num != -1):
 				tile_map[i].set_cell(pos_x, pos_y, -1)
@@ -208,10 +229,10 @@ func remove_part(pos_x, pos_y):
 
 func finish_placement(n, pos_x, pos_y, dir):
 	if(maintenance_mode):
-		var current_tile = drawing_device.electric_grid[pos_y][pos_x]
+		var current_tile = drawing_device.current_grid[pos_y][pos_x]
 		if(current_tile != 0 && current_tile != dir):
 			dir = 3
-		drawing_device.electric_grid[pos_y][pos_x] = dir
+		drawing_device.current_grid[pos_y][pos_x] = dir
 		drawing_device.update()
 	else:
 		tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
@@ -237,25 +258,27 @@ func finish_placement(n, pos_x, pos_y, dir):
 			new_light.check_connection(drawing_device.connected_grid[pos_y][pos_x])
 			drawing_device.light_sprites.append(new_light)
 
-func move_camera():
-	# Somehow, the camera lags behind a bit?
-	var mouse_pos = main_camera.get_viewport().get_mouse_pos()
+func move_camera(dir):
+	main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+dir.x*25, 0, grid_width), clamp(main_camera.get_pos().y+dir.y*25, 0, grid_height)))
 
-	var left_side = 1
-	if(mouse_pos.x < screen_width*0.5):
-		left_side = -1
-	var top_side = 1
-	if(mouse_pos.y < screen_height*0.5):
-		top_side = -1
-	
-	var check_bounds_x = abs(mouse_pos.x - screen_width*0.5)
-	var check_bounds_y = abs(mouse_pos.y - screen_height*0.5)
-	
-	if check_bounds_x > screen_width*0.4:
-		main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+8*left_side, 0, grid_width), main_camera.get_pos().y))
-	
-	if check_bounds_y > screen_height*0.4:
-		main_camera.set_pos(Vector2(main_camera.get_pos().x, clamp(main_camera.get_pos().y+8*top_side, 0, grid_height)))
+#func move_camera():
+#	var mouse_pos = main_camera.get_viewport().get_mouse_pos()
+#
+#	var left_side = 1
+#	if(mouse_pos.x < screen_width*0.5):
+#		left_side = -1
+#	var top_side = 1
+#	if(mouse_pos.y < screen_height*0.5):
+#		top_side = -1
+#	
+#	var check_bounds_x = abs(mouse_pos.x - screen_width*0.5)
+#	var check_bounds_y = abs(mouse_pos.y - screen_height*0.5)
+#	
+#	if check_bounds_x > screen_width*0.4:
+#		main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+8*left_side, 0, grid_width), main_camera.get_pos().y))
+#	
+#	if check_bounds_y > screen_height*0.4:
+#		main_camera.set_pos(Vector2(main_camera.get_pos().x, clamp(main_camera.get_pos().y+8*top_side, 0, grid_height)))
 	
 
 

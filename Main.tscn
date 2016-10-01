@@ -53,8 +53,8 @@ limit/left = 0
 limit/top = 0
 limit/right = 10000000
 limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
 smoothing/enable = true
 smoothing/speed = 5.0
 drag_margin/left = 0.0
@@ -233,6 +233,7 @@ script/script = ExtResource( 7 )
 
 [node name="TabContainer" type="TabContainer" parent="GUI/Control"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -246,8 +247,6 @@ tabs_visible = true
 
 [node name="Walls" type="Tabs" parent="GUI/Control/TabContainer"]
 
-editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -539,6 +538,7 @@ textures/normal = ExtResource( 22 )
 
 [node name="Misc" type="Tabs" parent="GUI/Control/TabContainer"]
 
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -710,9 +710,78 @@ text = "Maintenance"
 flat = false
 align = 0
 
+[node name="ElectricGrid" type="TextureButton" parent="GUI/Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1440.0
+margin/top = 790.0
+margin/right = 1462.0
+margin/bottom = 812.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/scale = Vector2( 2, 2 )
+params/modulate = Color( 0.993774, 1, 0.203125, 1 )
+
+[node name="WaterGrid" type="TextureButton" parent="GUI/Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1500.0
+margin/top = 790.0
+margin/right = 1522.0
+margin/bottom = 812.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/scale = Vector2( 2, 2 )
+params/modulate = Color( 0.291443, 0.373132, 0.746094, 1 )
+
+[node name="WasteGrid" type="TextureButton" parent="GUI/Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1440.0
+margin/top = 840.0
+margin/right = 1484.0
+margin/bottom = 884.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/scale = Vector2( 2, 2 )
+params/modulate = Color( 0.21875, 0.164543, 0.0205078, 1 )
+
+[node name="GasGrid" type="TextureButton" parent="GUI/Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1500.0
+margin/top = 840.0
+margin/right = 1522.0
+margin/bottom = 862.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/scale = Vector2( 2, 2 )
+params/modulate = Color( 0.17763, 0.589844, 0.0622101, 1 )
+
 [node name="PlayerProperties" type="Control" parent="GUI"]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -869,5 +938,13 @@ trigger = false
 [connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbLED" to="GUI/Control" method="_on_LightBulbLED_pressed"]
 
 [connection signal="toggled" from="GUI/Control/MaintenanceToggle" to="GUI/Control" method="_on_MaintenanceToggle_toggled"]
+
+[connection signal="pressed" from="GUI/Control/ElectricGrid" to="GUI/Control" method="_on_ElectricGrid_pressed"]
+
+[connection signal="pressed" from="GUI/Control/WaterGrid" to="GUI/Control" method="_on_WaterGrid_pressed"]
+
+[connection signal="pressed" from="GUI/Control/WasteGrid" to="GUI/Control" method="_on_WasteGrid_pressed"]
+
+[connection signal="pressed" from="GUI/Control/GasGrid" to="GUI/Control" method="_on_GasGrid_pressed"]
 
 

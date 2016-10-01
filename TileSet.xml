@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="TileSet" subresource_count="45" version="2.1" version_name="Godot Engine v2.1.stable.official">
-	<ext_resource path="res://Art/LightBulbLED.png" type="Texture" index="14"></ext_resource>
-	<ext_resource path="res://Art/Bed.png" type="Texture" index="18"></ext_resource>
-	<ext_resource path="res://Art/WindowOpen.png" type="Texture" index="9"></ext_resource>
-	<ext_resource path="res://Art/Ground.png" type="Texture" index="1"></ext_resource>
-	<ext_resource path="res://Art/FloorNormal.png" type="Texture" index="20"></ext_resource>
-	<ext_resource path="res://Art/WallCork.png" type="Texture" index="5"></ext_resource>
-	<ext_resource path="res://Art/WindowGlass.png" type="Texture" index="10"></ext_resource>
-	<ext_resource path="res://Art/GroundGrass.png" type="Texture" index="0"></ext_resource>
-	<ext_resource path="res://Art/WallWood.png" type="Texture" index="22"></ext_resource>
-	<ext_resource path="res://Art/RoofFlat.png" type="Texture" index="7"></ext_resource>
-	<ext_resource path="res://Art/WallWoodBack.png" type="Texture" index="23"></ext_resource>
-	<ext_resource path="res://Art/Door.png" type="Texture" index="12"></ext_resource>
-	<ext_resource path="res://Art/WallStone.png" type="Texture" index="3"></ext_resource>
-	<ext_resource path="res://Art/WallStoneBack.png" type="Texture" index="4"></ext_resource>
-	<ext_resource path="res://Art/Stairs.png" type="Texture" index="21"></ext_resource>
-	<ext_resource path="res://Art/WallCorkBack.png" type="Texture" index="6"></ext_resource>
+<resource_file type="TileSet" subresource_count="46" version="2.1" version_name="Godot Engine v2.1.stable.official">
 	<ext_resource path="res://Art/RoofAngled.png" type="Texture" index="8"></ext_resource>
-	<ext_resource path="res://Art/LightBulbBad.png" type="Texture" index="11"></ext_resource>
-	<ext_resource path="res://Art/LightBulbGood.png" type="Texture" index="13"></ext_resource>
+	<ext_resource path="res://Art/Sink.png" type="Texture" index="19"></ext_resource>
+	<ext_resource path="res://Art/WallBrick.png" type="Texture" index="26"></ext_resource>
+	<ext_resource path="res://Art/FloorNormal.png" type="Texture" index="22"></ext_resource>
+	<ext_resource path="res://Art/Stairs.png" type="Texture" index="23"></ext_resource>
+	<ext_resource path="res://Art/WallStone.png" type="Texture" index="3"></ext_resource>
+	<ext_resource path="res://Art/WallCorkBack.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://Art/WallBrickBack.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://Art/GroundGrass.png" type="Texture" index="0"></ext_resource>
+	<ext_resource path="res://Art/LightBulbBad.png" type="Texture" index="11"></ext_resource>
+	<ext_resource path="res://Art/Bed.png" type="Texture" index="20"></ext_resource>
+	<ext_resource path="res://Art/WallWoodBack.png" type="Texture" index="25"></ext_resource>
+	<ext_resource path="res://Art/LightBulbLED.png" type="Texture" index="14"></ext_resource>
+	<ext_resource path="res://Art/RoofFlat.png" type="Texture" index="7"></ext_resource>
 	<ext_resource path="res://Art/Toilet.png" type="Texture" index="15"></ext_resource>
+	<ext_resource path="res://Art/WindowOpen.png" type="Texture" index="9"></ext_resource>
+	<ext_resource path="res://Art/WallWood.png" type="Texture" index="24"></ext_resource>
+	<ext_resource path="res://Art/WallCork.png" type="Texture" index="5"></ext_resource>
+	<ext_resource path="res://Art/FloorSupports.png" type="Texture" index="21"></ext_resource>
+	<ext_resource path="res://Art/WallStoneBack.png" type="Texture" index="4"></ext_resource>
+	<ext_resource path="res://Art/Door.png" type="Texture" index="12"></ext_resource>
+	<ext_resource path="res://Art/Ground.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://Shaders/tilemapShader.shd" type="Shader" index="17"></ext_resource>
+	<ext_resource path="res://NormalMaps/SinkNormal.png" type="Texture" index="18"></ext_resource>
+	<ext_resource path="res://Art/LightBulbGood.png" type="Texture" index="13"></ext_resource>
 	<ext_resource path="res://Art/Shower.png" type="Texture" index="16"></ext_resource>
-	<ext_resource path="res://Art/Sink.png" type="Texture" index="17"></ext_resource>
-	<ext_resource path="res://Art/WallBrick.png" type="Texture" index="24"></ext_resource>
-	<ext_resource path="res://Art/FloorSupports.png" type="Texture" index="19"></ext_resource>
+	<ext_resource path="res://Art/WindowGlass.png" type="Texture" index="10"></ext_resource>
 	<resource type="OccluderPolygon2D" path="local://2">
 		<bool name="closed"> True </bool>
 		<int name="cull_mode"> 0 </int>
@@ -85,16 +87,10 @@
 		<vector2_array name="points" len="3"> 			148.754, -0.355774, 148.754, 150.363, -1.96436, 151.265 </vector2_array>
 
 	</resource>
-	<resource type="OccluderPolygon2D" path="local://19">
-		<bool name="closed"> True </bool>
-		<int name="cull_mode"> 0 </int>
-		<vector2_array name="polygon" len="4"> 			14.0704, 195.144, 140.421, 195.144, 138.616, 208.681, 12.2653, 208.681 </vector2_array>
-
-	</resource>
-	<resource type="OccluderPolygon2D" path="local://18">
-		<bool name="closed"> True </bool>
-		<int name="cull_mode"> 0 </int>
-		<vector2_array name="polygon" len="4"> 			-1.08941, 106.953, 301.909, 106.953, 301.909, 115.098, 0.539617, 115.098 </vector2_array>
+	<resource type="CanvasItemMaterial" path="local://18">
+		<resource name="shader/shader" external="17">  </resource>
+		<int name="shader/shading_mode"> 0 </int>
+		<resource name="shader_param/normal" external="18">  </resource>
 
 	</resource>
 	<resource type="OccluderPolygon2D" path="local://6">
@@ -162,17 +158,16 @@
 		<array name="2/shapes" len="0" shared="false">
 		</array>
 		<string name="3/name"> "Bed" </string>
-		<resource name="3/texture" external="18">  </resource>
+		<resource name="3/texture" external="20">  </resource>
 		<vector2 name="3/tex_offset"> 0, 0 </vector2>
 		<resource name="3/material"></resource>		<rect2 name="3/region"> 0, 0, 301, 151 </rect2>
 		<vector2 name="3/occluder_offset"> -0, -0 </vector2>
-		<resource name="3/occluder" resource_type="OccluderPolygon2D" path="local://18">  </resource>
-		<vector2 name="3/navigation_offset"> -0, -0 </vector2>
+		<resource name="3/occluder"></resource>		<vector2 name="3/navigation_offset"> -0, -0 </vector2>
 		<resource name="3/navigation"></resource>		<vector2 name="3/shape_offset"> 0, 0 </vector2>
 		<array name="3/shapes" len="0" shared="false">
 		</array>
 		<string name="4/name"> "FloorSupports" </string>
-		<resource name="4/texture" external="19">  </resource>
+		<resource name="4/texture" external="21">  </resource>
 		<vector2 name="4/tex_offset"> 0, 0 </vector2>
 		<resource name="4/material"></resource>		<rect2 name="4/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="4/occluder_offset"> -0, -0 </vector2>
@@ -183,7 +178,7 @@
 			<resource  resource_type="Shape2D" path="local://5">  </resource>
 		</array>
 		<string name="5/name"> "FloorNormal" </string>
-		<resource name="5/texture" external="20">  </resource>
+		<resource name="5/texture" external="22">  </resource>
 		<vector2 name="5/tex_offset"> 0, 0 </vector2>
 		<resource name="5/material"></resource>		<rect2 name="5/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="5/occluder_offset"> -0, -0 </vector2>
@@ -194,7 +189,7 @@
 			<resource  resource_type="Shape2D" path="local://7">  </resource>
 		</array>
 		<string name="6/name"> "Stairs" </string>
-		<resource name="6/texture" external="21">  </resource>
+		<resource name="6/texture" external="23">  </resource>
 		<vector2 name="6/tex_offset"> 0, 0 </vector2>
 		<resource name="6/material"></resource>		<rect2 name="6/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="6/occluder_offset"> -0, -0 </vector2>
@@ -203,7 +198,7 @@
 		<array name="6/shapes" len="0" shared="false">
 		</array>
 		<string name="7/name"> "WallWood" </string>
-		<resource name="7/texture" external="22">  </resource>
+		<resource name="7/texture" external="24">  </resource>
 		<vector2 name="7/tex_offset"> 0, 0 </vector2>
 		<resource name="7/material"></resource>		<rect2 name="7/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="7/occluder_offset"> -0, -0 </vector2>
@@ -214,7 +209,7 @@
 			<resource  resource_type="Shape2D" path="local://9">  </resource>
 		</array>
 		<string name="8/name"> "WallWoodBack" </string>
-		<resource name="8/texture" external="23">  </resource>
+		<resource name="8/texture" external="25">  </resource>
 		<vector2 name="8/tex_offset"> 0, 0 </vector2>
 		<resource name="8/material"></resource>		<rect2 name="8/region"> 0, 0, 151, 153 </rect2>
 		<vector2 name="8/occluder_offset"> -0, -0 </vector2>
@@ -223,7 +218,7 @@
 		<array name="8/shapes" len="0" shared="false">
 		</array>
 		<string name="9/name"> "WallBrick" </string>
-		<resource name="9/texture" external="24">  </resource>
+		<resource name="9/texture" external="26">  </resource>
 		<vector2 name="9/tex_offset"> 0, 0 </vector2>
 		<resource name="9/material"></resource>		<rect2 name="9/region"> 0, 0, 151, 152 </rect2>
 		<vector2 name="9/occluder_offset"> -0, -0 </vector2>
@@ -354,8 +349,7 @@
 		<vector2 name="22/tex_offset"> 0, 0 </vector2>
 		<resource name="22/material"></resource>		<rect2 name="22/region"> 0, 0, 151, 301 </rect2>
 		<vector2 name="22/occluder_offset"> -0, -0 </vector2>
-		<resource name="22/occluder" resource_type="OccluderPolygon2D" path="local://19">  </resource>
-		<vector2 name="22/navigation_offset"> -0, -0 </vector2>
+		<resource name="22/occluder"></resource>		<vector2 name="22/navigation_offset"> -0, -0 </vector2>
 		<resource name="22/navigation"></resource>		<vector2 name="22/shape_offset"> 0, 0 </vector2>
 		<array name="22/shapes" len="0" shared="false">
 		</array>
@@ -369,9 +363,10 @@
 		<array name="23/shapes" len="0" shared="false">
 		</array>
 		<string name="24/name"> "Sink" </string>
-		<resource name="24/texture" external="17">  </resource>
+		<resource name="24/texture" external="19">  </resource>
 		<vector2 name="24/tex_offset"> 0, 0 </vector2>
-		<resource name="24/material"></resource>		<rect2 name="24/region"> 0, 0, 151, 301 </rect2>
+		<resource name="24/material" resource_type="CanvasItemMaterial" path="local://18">  </resource>
+		<rect2 name="24/region"> 0, 0, 151, 301 </rect2>
 		<vector2 name="24/occluder_offset"> -0, -0 </vector2>
 		<resource name="24/occluder"></resource>		<vector2 name="24/navigation_offset"> -0, -0 </vector2>
 		<resource name="24/navigation"></resource>		<vector2 name="24/shape_offset"> 0, 0 </vector2>
