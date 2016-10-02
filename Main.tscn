@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=1]
+[gd_scene load_steps=40 format=1]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Grid.gd" type="Script" id=2]
@@ -15,23 +15,29 @@
 [ext_resource path="res://Art/WallBrickBack.png" type="Texture" id=13]
 [ext_resource path="res://Art/WallCork.png" type="Texture" id=14]
 [ext_resource path="res://Art/WallCorkBack.png" type="Texture" id=15]
-[ext_resource path="res://Art/FloorSupports.png" type="Texture" id=16]
-[ext_resource path="res://Art/FloorNormal.png" type="Texture" id=17]
-[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=18]
-[ext_resource path="res://Art/RoofAngled.png" type="Texture" id=19]
-[ext_resource path="res://Art/Stairs.png" type="Texture" id=20]
-[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=21]
-[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=22]
-[ext_resource path="res://Art/Door.png" type="Texture" id=23]
-[ext_resource path="res://Art/Bed.png" type="Texture" id=24]
-[ext_resource path="res://Art/Toilet.png" type="Texture" id=25]
-[ext_resource path="res://Art/Shower.png" type="Texture" id=26]
-[ext_resource path="res://Art/Sink.png" type="Texture" id=27]
-[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=28]
-[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=29]
-[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=30]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=31]
-[ext_resource path="res://Art/Player.png" type="Texture" id=32]
+[ext_resource path="res://Art/FloorWood.png" type="Texture" id=16]
+[ext_resource path="res://Art/FloorCarpet.png" type="Texture" id=17]
+[ext_resource path="res://Art/FloorCeramic.png" type="Texture" id=18]
+[ext_resource path="res://Art/FloorCork.png" type="Texture" id=19]
+[ext_resource path="res://Art/RoofFlat.png" type="Texture" id=20]
+[ext_resource path="res://Art/RoofAngled.png" type="Texture" id=21]
+[ext_resource path="res://Art/Stairs.png" type="Texture" id=22]
+[ext_resource path="res://Art/WindowOpen.png" type="Texture" id=23]
+[ext_resource path="res://Art/WindowGlass.png" type="Texture" id=24]
+[ext_resource path="res://Art/Door.png" type="Texture" id=25]
+[ext_resource path="res://Art/Bed.png" type="Texture" id=26]
+[ext_resource path="res://Art/Toilet.png" type="Texture" id=27]
+[ext_resource path="res://Art/Shower.png" type="Texture" id=28]
+[ext_resource path="res://Art/Sink.png" type="Texture" id=29]
+[ext_resource path="res://Art/Cabinet.png" type="Texture" id=30]
+[ext_resource path="res://Art/Microwave.png" type="Texture" id=31]
+[ext_resource path="res://Art/Fridge.png" type="Texture" id=32]
+[ext_resource path="res://Art/Stove.png" type="Texture" id=33]
+[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=34]
+[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=35]
+[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=36]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=37]
+[ext_resource path="res://Art/Player.png" type="Texture" id=38]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -233,7 +239,6 @@ script/script = ExtResource( 7 )
 
 [node name="TabContainer" type="TabContainer" parent="GUI/Control"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -247,6 +252,8 @@ tabs_visible = true
 
 [node name="Walls" type="Tabs" parent="GUI/Control/TabContainer"]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -409,22 +416,6 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="FloorSupports" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
-
-rect/scale = Vector2( 0.5, 0.5 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 26.0
-margin/top = 28.0
-margin/right = 177.0
-margin/bottom = 180.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 16 )
-
 [node name="FloorNormal" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
@@ -439,9 +430,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 17 )
+textures/normal = ExtResource( 16 )
 
-[node name="RoofFlat" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+[node name="FloorCarpet" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -455,9 +446,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 18 )
+textures/normal = ExtResource( 17 )
 
-[node name="RoofAngled" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+[node name="FloorCeramic" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -471,9 +462,9 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 19 )
+textures/normal = ExtResource( 18 )
 
-[node name="Stairs" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+[node name="FloorCork" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -487,7 +478,55 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+textures/normal = ExtResource( 19 )
+
+[node name="RoofFlat" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 526.0
+margin/top = 28.0
+margin/right = 677.0
+margin/bottom = 181.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 textures/normal = ExtResource( 20 )
+
+[node name="RoofAngled" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 626.0
+margin/top = 28.0
+margin/right = 777.0
+margin/bottom = 181.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 21 )
+
+[node name="Stairs" type="TextureButton" parent="GUI/Control/TabContainer/Floors"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 26.0
+margin/top = 28.0
+margin/right = 177.0
+margin/bottom = 181.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 22 )
 
 [node name="Windows" type="Tabs" parent="GUI/Control/TabContainer"]
 
@@ -518,7 +557,7 @@ margin/bottom = 180.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 21 )
+textures/normal = ExtResource( 23 )
 
 [node name="WindowGlass" type="TextureButton" parent="GUI/Control/TabContainer/Windows"]
 
@@ -534,11 +573,10 @@ margin/bottom = 181.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 22 )
+textures/normal = ExtResource( 24 )
 
-[node name="Misc" type="Tabs" parent="GUI/Control/TabContainer"]
+[node name="Utilities" type="Tabs" parent="GUI/Control/TabContainer"]
 
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -550,7 +588,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="Door" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+[node name="Door" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
 
 rect/scale = Vector2( 0.25, 0.25 )
 focus/ignore_mouse = false
@@ -564,41 +602,41 @@ margin/bottom = 329.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 23 )
-
-[node name="Bed" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
-
-rect/scale = Vector2( 0.25, 0.25 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 144.0
-margin/top = 28.0
-margin/right = 445.0
-margin/bottom = 329.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 24 )
-
-[node name="Toilet" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
-
-rect/scale = Vector2( 0.25, 0.25 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 256.0
-margin/top = 28.0
-margin/right = 407.0
-margin/bottom = 329.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
 textures/normal = ExtResource( 25 )
 
-[node name="Shower" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+[node name="Bed" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 136.0
+margin/top = 28.0
+margin/right = 437.0
+margin/bottom = 329.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 26 )
+
+[node name="Toilet" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 246.0
+margin/top = 28.0
+margin/right = 397.0
+margin/bottom = 329.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 27 )
+
+[node name="Shower" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
 
 rect/scale = Vector2( 0.25, 0.25 )
 focus/ignore_mouse = false
@@ -612,11 +650,11 @@ margin/bottom = 329.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 26 )
+textures/normal = ExtResource( 28 )
 
-[node name="Sink" type="TextureButton" parent="GUI/Control/TabContainer/Misc"]
+[node name="Sink" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
 
-rect/scale = Vector2( 0.25, 0.25 )
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -624,11 +662,75 @@ size_flags/vertical = 2
 margin/left = 376.0
 margin/top = 28.0
 margin/right = 527.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 29 )
+
+[node name="Cabinet" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 486.0
+margin/top = 28.0
+margin/right = 637.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 30 )
+
+[node name="Microwave" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 586.0
+margin/top = 28.0
+margin/right = 737.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 31 )
+
+[node name="Fridge" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 696.0
+margin/top = 28.0
+margin/right = 847.0
 margin/bottom = 329.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 27 )
+textures/normal = ExtResource( 32 )
+
+[node name="Stove" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 776.0
+margin/top = 28.0
+margin/right = 927.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 33 )
 
 [node name="Lights" type="Tabs" parent="GUI/Control/TabContainer"]
 
@@ -659,7 +761,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 28 )
+textures/normal = ExtResource( 34 )
 
 [node name="LightBulbGood" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -675,7 +777,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 29 )
+textures/normal = ExtResource( 35 )
 
 [node name="LightBulbLED" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -691,7 +793,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 30 )
+textures/normal = ExtResource( 36 )
 
 [node name="MaintenanceToggle" type="CheckButton" parent="GUI/Control"]
 
@@ -876,12 +978,12 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 31 )
+script/script = ExtResource( 37 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( 157, 192 )
-texture = ExtResource( 32 )
+texture = ExtResource( 38 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 
@@ -907,9 +1009,13 @@ trigger = false
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Walls/WallCorkBack" to="GUI/Control" method="_on_WallCorkBack_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorSupports" to="GUI/Control" method="_on_FloorSupports_pressed"]
-
 [connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorNormal" to="GUI/Control" method="_on_FloorNormal_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorCarpet" to="GUI/Control" method="_on_FloorCarpet_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorCeramic" to="GUI/Control" method="_on_FloorCeramic_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Floors/FloorCork" to="GUI/Control" method="_on_FloorCork_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Floors/RoofFlat" to="GUI/Control" method="_on_RoofFlat_pressed"]
 
@@ -921,15 +1027,23 @@ trigger = false
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Windows/WindowGlass" to="GUI/Control" method="_on_WindowGlass_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Door" to="GUI/Control" method="_on_Door_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Door" to="GUI/Control" method="_on_Door_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Bed" to="GUI/Control" method="_on_Bed_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Bed" to="GUI/Control" method="_on_Bed_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Toilet" to="GUI/Control" method="_on_Toilet_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Toilet" to="GUI/Control" method="_on_Toilet_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Shower" to="GUI/Control" method="_on_Shower_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Shower" to="GUI/Control" method="_on_Shower_pressed"]
 
-[connection signal="pressed" from="GUI/Control/TabContainer/Misc/Sink" to="GUI/Control" method="_on_Sink_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Sink" to="GUI/Control" method="_on_Sink_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Cabinet" to="GUI/Control" method="_on_Cabinet_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Microwave" to="GUI/Control" method="_on_Microwave_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Fridge" to="GUI/Control" method="_on_Fridge_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Stove" to="GUI/Control" method="_on_Stove_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbBad" to="GUI/Control" method="_on_LightBulbBad_pressed"]
 

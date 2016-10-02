@@ -216,14 +216,14 @@ func day_night_cycle():
 
 func remove_part(pos_x, pos_y):
 	if(maintenance_mode):
-		# drawing_device.electric_grid[pos_y][pos_x] = 0
+		drawing_device.current_grid[pos_y][pos_x] = 0
 		drawing_device.update()
 	else:
 		for i in range(4):
 			var cur_num = tile_map[i].get_cell(pos_x, pos_y)
 			if(cur_num != -1):
 				tile_map[i].set_cell(pos_x, pos_y, -1)
-				if(cur_num >= 19 && cur_num <= 21):
+				if(cur_num >= 21 && cur_num <= 23):
 					drawing_device.delete_light(pos_x, pos_y)
 				break
 
@@ -237,17 +237,18 @@ func finish_placement(n, pos_x, pos_y, dir):
 	else:
 		tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
 		
-		if(n >= 19 && n <= 21):
+		# add lights, if applicable
+		if(n >= 21 && n <= 23):
 			var new_light = light_preload.instance()
-			if(n == 19):
+			if(n == 21):
 				new_light.set_energy(1)
 				new_light.set_texture_scale(4)
-			elif(n == 20):
+			elif(n == 22):
 				new_light.set_energy(1.25)
 				new_light.set_color(Color(0.9, 0.9, 0.9))
 				new_light.get_child(0).set_modulate(Color(0.9, 0.9, 0.9))
 				new_light.set_texture_scale(4.5)
-			elif(n == 21):
+			elif(n == 23):
 				new_light.set_energy(1.5)
 				new_light.set_color(Color(0.95, 0.95, 0.95))
 				new_light.get_child(0).set_modulate(Color(1.0, 1.0, 1.0))
