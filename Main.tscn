@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=1]
+[gd_scene load_steps=44 format=1]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Grid.gd" type="Script" id=2]
@@ -33,11 +33,15 @@
 [ext_resource path="res://Art/Microwave.png" type="Texture" id=31]
 [ext_resource path="res://Art/Fridge.png" type="Texture" id=32]
 [ext_resource path="res://Art/Stove.png" type="Texture" id=33]
-[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=34]
-[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=35]
-[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=36]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=37]
-[ext_resource path="res://Art/Player.png" type="Texture" id=38]
+[ext_resource path="res://Art/Dishwasher.png" type="Texture" id=34]
+[ext_resource path="res://Art/WashingMachine.png" type="Texture" id=35]
+[ext_resource path="res://Art/Dryer.png" type="Texture" id=36]
+[ext_resource path="res://Art/Heater.png" type="Texture" id=37]
+[ext_resource path="res://Art/LightBulbBad.png" type="Texture" id=38]
+[ext_resource path="res://Art/LightBulbGood.png" type="Texture" id=39]
+[ext_resource path="res://Art/LightBulbLED.png" type="Texture" id=40]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=41]
+[ext_resource path="res://Art/Player.png" type="Texture" id=42]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -732,6 +736,70 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 33 )
 
+[node name="Dishwasher" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 876.0
+margin/top = 28.0
+margin/right = 1027.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 34 )
+
+[node name="WashingMachine" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 976.0
+margin/top = 28.0
+margin/right = 1127.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 35 )
+
+[node name="Dryer" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1076.0
+margin/top = 28.0
+margin/right = 1227.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 36 )
+
+[node name="Heater" type="TextureButton" parent="GUI/Control/TabContainer/Utilities"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1176.0
+margin/top = 28.0
+margin/right = 1327.0
+margin/bottom = 179.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 37 )
+
 [node name="Lights" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
@@ -761,7 +829,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 34 )
+textures/normal = ExtResource( 38 )
 
 [node name="LightBulbGood" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -777,7 +845,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 35 )
+textures/normal = ExtResource( 39 )
 
 [node name="LightBulbLED" type="TextureButton" parent="GUI/Control/TabContainer/Lights"]
 
@@ -793,7 +861,7 @@ margin/bottom = 179.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 36 )
+textures/normal = ExtResource( 40 )
 
 [node name="MaintenanceToggle" type="CheckButton" parent="GUI/Control"]
 
@@ -978,12 +1046,12 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 37 )
+script/script = ExtResource( 41 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 transform/pos = Vector2( 157, 192 )
-texture = ExtResource( 38 )
+texture = ExtResource( 42 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 
@@ -1044,6 +1112,14 @@ trigger = false
 [connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Fridge" to="GUI/Control" method="_on_Fridge_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Stove" to="GUI/Control" method="_on_Stove_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Dishwasher" to="GUI/Control" method="_on_Dishwasher_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/WashingMachine" to="GUI/Control" method="_on_WashingMachine_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Dryer" to="GUI/Control" method="_on_Dryer_pressed"]
+
+[connection signal="pressed" from="GUI/Control/TabContainer/Utilities/Heater" to="GUI/Control" method="_on_Heater_pressed"]
 
 [connection signal="pressed" from="GUI/Control/TabContainer/Lights/LightBulbBad" to="GUI/Control" method="_on_LightBulbBad_pressed"]
 

@@ -109,6 +109,18 @@ func _on_Fridge_pressed():
 func _on_Stove_pressed():
 	change_tile(30, 1, 0)
 
+func _on_Dishwasher_pressed():
+	change_tile(31, 1, 0)
+
+func _on_WashingMachine_pressed():
+	change_tile(32, 1, 0)
+
+func _on_Dryer_pressed():
+	change_tile(33, 1, 0)
+
+func _on_Heater_pressed():
+	change_tile(34, 1, 0)
+
 #### CHANGE BETWEEN GRIDS ####
 func _on_ElectricGrid_pressed():
 	drawing_device.current_mode = 0
