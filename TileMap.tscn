@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=1]
+[gd_scene load_steps=58 format=1]
 
 [ext_resource path="res://Art/GroundGrass.png" type="Texture" id=1]
 [ext_resource path="res://Art/Ground.png" type="Texture" id=2]
@@ -35,104 +35,107 @@
 [ext_resource path="res://Art/WashingMachine.png" type="Texture" id=33]
 [ext_resource path="res://Art/Dryer.png" type="Texture" id=34]
 [ext_resource path="res://Art/Heater.png" type="Texture" id=35]
+[ext_resource path="res://Art/LitterBin.png" type="Texture" id=36]
+[ext_resource path="res://Art/TableSmall.png" type="Texture" id=37]
+[ext_resource path="res://Art/Chair.png" type="Texture" id=38]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 149.433, -0.916992, 149.433, 149.083, -0.56694, 149.083, -0.56694, -0.916992 )
 
-[sub_resource type="OccluderPolygon2D" id=1]
+[sub_resource type="OccluderPolygon2D" id=2]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( 0.198761, 17.7357, 0.198761, 148.01, 150.516, 148.01, 150.516, 17.7357 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 150.295, 0, 150.295, 150, 0.294998, 150, 0.294998, 0 )
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=4]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( -1.27705, 0.0563202, -1.27705, 152.057, 150.723, 152.057, 150.723, 0.0563202 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 150.455, -0.882248, 150.455, 36.8532, 1.10199, 36.8532, 1.10199, -0.882248 )
 
-[sub_resource type="OccluderPolygon2D" id=13]
+[sub_resource type="OccluderPolygon2D" id=6]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( 1.06458, 6.89867, 1.06458, 27.338, 151.124, 27.5958, 150.855, 6.89867 )
 
-[sub_resource type="ConvexPolygonShape2D" id=16]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0.477386, -0.0935974, 150.853, 0.490387, 150.853, 37.2812, 1.06137, 36.4052 )
 
-[sub_resource type="OccluderPolygon2D" id=15]
+[sub_resource type="OccluderPolygon2D" id=8]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( 1.41675, 6.25397, 151.061, 6.25397, 151.061, 26.9401, 1.41675, 26.9401 )
 
-[sub_resource type="ConvexPolygonShape2D" id=17]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -0.0108643, 0.554016, 150.872, 0.554016, 150.872, 35.281, -0.0108643, 35.281 )
 
-[sub_resource type="ConvexPolygonShape2D" id=18]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 151.471, -0.177002, 151.471, 38.7411, -0.0108643, 37.5436, -0.0108643, -0.177002 )
 
-[sub_resource type="ConvexPolygonShape2D" id=19]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 152.609, 0, 152.609, 150, 112.609, 150, 112.609, 0 )
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=12]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( 122.163, -0.380615, 122.163, 150.88, 142.066, 150.88, 142.066, -0.380615 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 150.572, -7.72359, 150.572, 143.218, 112.837, 143.218, 112.837, -7.72359 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 150, 0, 150.422, 152.863, 111.88, 152.863, 111.88, 0.152435 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 150.679, 0.493774, 150.679, 153.172, 112.36, 153.172, 112.36, 0.493774 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=16]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 149.601, -0.631287, 149.601, 38.4651, -0.268616, 38.4651, -0.268616, -0.631287 )
 
-[sub_resource type="OccluderPolygon2D" id=9]
+[sub_resource type="OccluderPolygon2D" id=17]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( -0.268616, 7.51381, -1.08313, 30.3201, 150.415, 30.3201, 150.415, 7.51381 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=18]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 148.754, -0.355774, 148.754, 150.363, -1.96436, 151.265 )
 
-[sub_resource type="OccluderPolygon2D" id=11]
+[sub_resource type="OccluderPolygon2D" id=19]
 
 closed = true
 cull_mode = 0
@@ -151,7 +154,7 @@ offset = Vector2( 0.0330048, -27.6634 )
 [node name="StaticBody2D" type="StaticBody2D" parent="GroundGrass"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -170,7 +173,7 @@ trigger = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="GroundGrass"]
 
-occluder = SubResource( 1 )
+occluder = SubResource( 2 )
 light_mask = 1
 
 [node name="Ground" type="Sprite" parent="."]
@@ -184,7 +187,7 @@ centered = false
 
 editor/display_folded = true
 input/pickable = false
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -203,7 +206,7 @@ trigger = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Ground"]
 
-occluder = SubResource( 3 )
+occluder = SubResource( 4 )
 light_mask = 1
 
 [node name="Door" type="Sprite" parent="."]
@@ -228,7 +231,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="FloorWood"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 14 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -248,7 +251,7 @@ trigger = false
 [node name="LightOccluder2D" type="LightOccluder2D" parent="FloorWood"]
 
 transform/pos = Vector2( -0.583984, 1.45996 )
-occluder = SubResource( 13 )
+occluder = SubResource( 6 )
 light_mask = 1
 
 [node name="FloorCarpet" type="Sprite" parent="."]
@@ -261,7 +264,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="FloorCarpet"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 16 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -281,7 +284,7 @@ trigger = false
 [node name="LightOccluder2D" type="LightOccluder2D" parent="FloorCarpet"]
 
 transform/pos = Vector2( -0.583984, 1.45996 )
-occluder = SubResource( 15 )
+occluder = SubResource( 8 )
 light_mask = 1
 
 [node name="FloorCeramic" type="Sprite" parent="."]
@@ -294,7 +297,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="FloorCeramic"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 17 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -314,7 +317,7 @@ trigger = false
 [node name="LightOccluder2D" type="LightOccluder2D" parent="FloorCeramic"]
 
 transform/pos = Vector2( -0.583984, 1.45996 )
-occluder = SubResource( 13 )
+occluder = SubResource( 6 )
 light_mask = 1
 
 [node name="FloorCork" type="Sprite" parent="."]
@@ -327,7 +330,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="FloorCork"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 18 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -347,7 +350,7 @@ trigger = false
 [node name="LightOccluder2D" type="LightOccluder2D" parent="FloorCork"]
 
 transform/pos = Vector2( -0.583984, 1.45996 )
-occluder = SubResource( 13 )
+occluder = SubResource( 6 )
 light_mask = 1
 
 [node name="Stairs" type="Sprite" parent="."]
@@ -367,7 +370,7 @@ centered = false
 
 editor/display_folded = true
 input/pickable = false
-shapes/0/shape = SubResource( 19 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -386,7 +389,7 @@ trigger = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="WallWood"]
 
-occluder = SubResource( 5 )
+occluder = SubResource( 12 )
 light_mask = 1
 
 [node name="WallWoodBack" type="Sprite" parent="."]
@@ -405,7 +408,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="WallBrick"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.609009, 8.12601 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -426,7 +429,7 @@ trigger = false
 [node name="LightOccluder2D1" type="LightOccluder2D" parent="WallBrick"]
 
 transform/pos = Vector2( -1.60901, 0.330643 )
-occluder = SubResource( 5 )
+occluder = SubResource( 12 )
 light_mask = 1
 
 [node name="WallBrickBack" type="Sprite" parent="."]
@@ -445,7 +448,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="WallStone"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -465,7 +468,7 @@ trigger = false
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="WallStone"]
 
 transform/pos = Vector2( -1.60901, 0.452515 )
-occluder = SubResource( 5 )
+occluder = SubResource( 12 )
 light_mask = 1
 
 [node name="WallStoneBack" type="Sprite" parent="."]
@@ -484,7 +487,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="WallCork"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 15 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -504,7 +507,7 @@ trigger = false
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="WallCork"]
 
 transform/pos = Vector2( -1, -0.214539 )
-occluder = SubResource( 5 )
+occluder = SubResource( 12 )
 light_mask = 1
 
 [node name="WallCorkBack" type="Sprite" parent="."]
@@ -523,7 +526,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="RoofFlat"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 16 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -542,7 +545,7 @@ trigger = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="RoofFlat"]
 
-occluder = SubResource( 9 )
+occluder = SubResource( 17 )
 light_mask = 1
 
 [node name="RoofAngled" type="Sprite" parent="."]
@@ -556,7 +559,7 @@ centered = false
 
 editor/display_folded = true
 input/pickable = false
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 18 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -575,7 +578,7 @@ trigger = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="RoofAngled"]
 
-occluder = SubResource( 11 )
+occluder = SubResource( 19 )
 light_mask = 1
 
 [node name="WindowOpen" type="Sprite" parent="."]
@@ -675,6 +678,24 @@ centered = false
 
 transform/pos = Vector2( 2035.95, 4.85486 )
 texture = ExtResource( 35 )
+centered = false
+
+[node name="LitterBin" type="Sprite" parent="."]
+
+transform/pos = Vector2( 2035.95, 208.425 )
+texture = ExtResource( 36 )
+centered = false
+
+[node name="Table" type="Sprite" parent="."]
+
+transform/pos = Vector2( 2035.95, 402.743 )
+texture = ExtResource( 37 )
+centered = false
+
+[node name="Chair" type="Sprite" parent="."]
+
+transform/pos = Vector2( 2035.95, 595.21 )
+texture = ExtResource( 38 )
 centered = false
 
 

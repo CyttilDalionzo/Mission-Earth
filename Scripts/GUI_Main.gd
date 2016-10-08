@@ -121,6 +121,15 @@ func _on_Dryer_pressed():
 func _on_Heater_pressed():
 	change_tile(34, 1, 0)
 
+func _on_LitterBin_pressed():
+	change_tile(35, 1, 0)
+
+func _on_Table_pressed():
+	change_tile(36, 1, 0)
+
+func _on_Chair_pressed():
+	change_tile(37, 1, 0)
+
 #### CHANGE BETWEEN GRIDS ####
 func _on_ElectricGrid_pressed():
 	drawing_device.current_mode = 0
@@ -141,3 +150,5 @@ func _on_GasGrid_pressed():
 	drawing_device.current_mode = 3
 	drawing_device.update()
 	print("GasGrid!")
+
+
