@@ -127,6 +127,14 @@ transform/scale = Vector2( 72.7273, 40.9091 )
 texture = ExtResource( 4 )
 modulate = Color( 0.0625, 0.00585938, 0.00585938, 1 )
 
+[node name="UndergroundMud" type="Sprite" parent="."]
+
+transform/scale = Vector2( 72.7273, 40.9091 )
+texture = ExtResource( 4 )
+centered = false
+modulate = Color( 0.15625, 0.0440979, 0.00976563, 1 )
+region = true
+
 [node name="TileMapBack" type="TileMap" parent="."]
 
 mode = 0
@@ -227,6 +235,7 @@ script/script = ExtResource( 6 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 10
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -234,6 +243,7 @@ scale = Vector2( 1, 1 )
 
 [node name="Control" type="Control" parent="GUI"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -260,7 +270,6 @@ tabs_visible = true
 [node name="Walls" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -585,6 +594,7 @@ textures/normal = ExtResource( 24 )
 [node name="Utilities" type="Tabs" parent="GUI/Control/TabContainer"]
 
 editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false

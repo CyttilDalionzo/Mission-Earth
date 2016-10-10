@@ -17,11 +17,13 @@ var current_tile_map = 0
 var current_flip_x = 0
 var current_flip_y = 0
 var current_flip_dir = 0
+var current_tile_size = Vector2(1,1)
 
-var level_grid = []
+var grids = [null, null, null, null]
 var tile_map = [null, null, null, null]
 var preview_tile_map = null
 var old_preview = [0,0]
+var placement_allowed = true
 
 var bg = null
 var canvas_mod = null
@@ -83,27 +85,37 @@ func _ready():
 	
 	get_node("Grid").set_variables(grid_width, grid_height, cell_size)
 	
-	initialize_tiles()
+	for i in range(4):
+		initialize_tiles(i)
+	
 	update_player_properties()
 	
 	set_process_input(true)
 	set_process(true)
 
-func initialize_tiles():
-	level_grid.resize(level_height)
+func initialize_tiles(n):
+	grids[n] = []
+	grids[n].resize(level_height)
 	
-	for i in range(0, level_height):
-		level_grid[i] = []
-		level_grid[i].resize(level_width)
-		for j in range(0, level_width):
-			if(i == floor(level_height*0.5)):
-				level_grid[i][j] = 1
-				tile_map[0].set_cell(j,i,0)
-			elif(i > level_height*0.5):
-				level_grid[i][j] = 2
-				tile_map[0].set_cell(j,i,1)
-			else:
-				level_grid[i][j] = 0
+	for i in range(level_height):
+		grids[n][i] = []
+		grids[n][i].resize(level_width)
+		for j in range(level_width):
+			grids[n][i][j] = 0
+	
+	if(n == 0):
+		get_node("UndergroundMud").set_pos(Vector2(0, level_height*0.5*cell_size-cell_size*0.5))
+		get_node("UndergroundMud").set_region_rect(Rect2(0,0, grid_width, grid_height*0.5))
+		for i in range(level_height):
+			for j in range(level_width):
+				if(i == floor(level_height*0.5)):
+					grids[n][i][j] = 1
+					tile_map[0].set_cell(j,i,0)
+				elif(i > level_height*0.5):
+					grids[n][i][j] = 2
+					tile_map[0].set_cell(j,i,1)
+				else:
+					grids[n][i][j] = 0
 
 func _input(ev):
 	if(ev.type == InputEvent.KEY):
@@ -181,6 +193,78 @@ func _input(ev):
 				preview_tile_map.set_cell(old_preview[0], old_preview[1], -1)
 				preview_tile_map.set_cell(grid_pos_x, grid_pos_y, current_tile, current_flip_x, current_flip_y)
 				old_preview = [grid_pos_x, grid_pos_y]
+				placement_allowed = true
+				for i in range(current_tile_size.y):
+					for j in range(current_tile_size.x):
+						if(grids[current_tile_map][grid_pos_y+i][grid_pos_x+j] != 0):
+							# need to find a way to show something can't be placed, and to actually forbid placement
+							preview_tile_map.set_cell(grid_pos_x, grid_pos_y, 0)
+							placement_allowed = false
+
+func remove_part(pos_x, pos_y):
+	if(maintenance_mode):
+		drawing_device.current_grid[pos_y][pos_x] = 0
+		drawing_device.update()
+	else:
+		var remove_this = -1
+		var cur_num = -1
+		for i in range(4):
+			cur_num = tile_map[i].get_cell(pos_x, pos_y)
+			if(cur_num != -1):
+				remove_this = i
+				break
+		for i in range(4):
+			cur_num = tile_map[i].get_cell(pos_x, pos_y)
+			if(cur_num == current_tile):
+				remove_this = i
+				break
+		if(remove_this != -1):
+			tile_map[remove_this].set_cell(pos_x, pos_y, -1)
+			if(cur_num >= 21 && cur_num <= 23):
+				drawing_device.delete_light(pos_x, pos_y)
+
+func finish_placement(n, pos_x, pos_y, dir):
+	if(maintenance_mode):
+		var current_tile = drawing_device.current_grid[pos_y][pos_x]
+		if(current_tile != 0 && current_tile != dir):
+			dir = 3
+		drawing_device.current_grid[pos_y][pos_x] = dir
+		drawing_device.update()
+	else:
+		if(!placement_allowed):
+			return
+		
+		# set tile map, and corresponding grid array cell(s), to correct number
+		tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
+		for i in range(current_tile_size.y):
+			for j in range(current_tile_size.x):
+				grids[current_tile_map][pos_y+i][pos_x+j] = n
+		
+		
+		# add lights, if applicable
+		if(n >= 21 && n <= 23):
+			var new_light = light_preload.instance()
+			if(n == 21):
+				new_light.set_energy(1)
+				new_light.set_texture_scale(4)
+			elif(n == 22):
+				new_light.set_energy(1.25)
+				new_light.set_color(Color(0.9, 0.9, 0.9))
+				new_light.get_child(0).set_modulate(Color(0.9, 0.9, 0.9))
+				new_light.set_texture_scale(4.5)
+			elif(n == 23):
+				new_light.set_energy(1.5)
+				new_light.set_color(Color(0.95, 0.95, 0.95))
+				new_light.get_child(0).set_modulate(Color(1.0, 1.0, 1.0))
+				new_light.set_texture_scale(5)
+			new_light.set_pos(Vector2((pos_x+0.5)*cell_size, (pos_y+0.5)*cell_size))
+			self.add_child(new_light)
+			new_light.corresponding_coord = Vector2(pos_x, pos_y)
+			new_light.check_connection(drawing_device.connected_grid[pos_y][pos_x])
+			drawing_device.light_sprites.append(new_light)
+
+func move_camera(dir):
+	main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+dir.x*25, 0, grid_width), clamp(main_camera.get_pos().y+dir.y*25, 0, grid_height)))
 
 func _process(delta):
 	day_night_cycle()
@@ -213,54 +297,6 @@ func day_night_cycle():
 		get_node("SunLight").set_pos(Vector2(cos(PI+0.5*PI*day_tracker)*screen_width*0.5 + screen_width*0.5, sin(PI+0.5*PI*day_tracker)*screen_height + screen_height))
 		get_node("SunLight").set_energy(bg_blue*20)
 		canvas_mod.set_color(Color(bg_blue, bg_blue, bg_blue))
-
-func remove_part(pos_x, pos_y):
-	if(maintenance_mode):
-		drawing_device.current_grid[pos_y][pos_x] = 0
-		drawing_device.update()
-	else:
-		for i in range(4):
-			var cur_num = tile_map[i].get_cell(pos_x, pos_y)
-			if(cur_num != -1):
-				tile_map[i].set_cell(pos_x, pos_y, -1)
-				if(cur_num >= 21 && cur_num <= 23):
-					drawing_device.delete_light(pos_x, pos_y)
-				break
-
-func finish_placement(n, pos_x, pos_y, dir):
-	if(maintenance_mode):
-		var current_tile = drawing_device.current_grid[pos_y][pos_x]
-		if(current_tile != 0 && current_tile != dir):
-			dir = 3
-		drawing_device.current_grid[pos_y][pos_x] = dir
-		drawing_device.update()
-	else:
-		tile_map[current_tile_map].set_cell(pos_x, pos_y, n, current_flip_x, current_flip_y)
-		
-		# add lights, if applicable
-		if(n >= 21 && n <= 23):
-			var new_light = light_preload.instance()
-			if(n == 21):
-				new_light.set_energy(1)
-				new_light.set_texture_scale(4)
-			elif(n == 22):
-				new_light.set_energy(1.25)
-				new_light.set_color(Color(0.9, 0.9, 0.9))
-				new_light.get_child(0).set_modulate(Color(0.9, 0.9, 0.9))
-				new_light.set_texture_scale(4.5)
-			elif(n == 23):
-				new_light.set_energy(1.5)
-				new_light.set_color(Color(0.95, 0.95, 0.95))
-				new_light.get_child(0).set_modulate(Color(1.0, 1.0, 1.0))
-				new_light.set_texture_scale(5)
-			new_light.set_pos(Vector2((pos_x+0.5)*cell_size, (pos_y+0.5)*cell_size))
-			self.add_child(new_light)
-			new_light.corresponding_coord = Vector2(pos_x, pos_y)
-			new_light.check_connection(drawing_device.connected_grid[pos_y][pos_x])
-			drawing_device.light_sprites.append(new_light)
-
-func move_camera(dir):
-	main_camera.set_pos(Vector2(clamp(main_camera.get_pos().x+dir.x*25, 0, grid_width), clamp(main_camera.get_pos().y+dir.y*25, 0, grid_height)))
 
 #func move_camera():
 #	var mouse_pos = main_camera.get_viewport().get_mouse_pos()
